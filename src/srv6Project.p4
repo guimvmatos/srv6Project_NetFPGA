@@ -3,18 +3,18 @@
 #include <sume_switch.p4>
 
 /* will be in udp header */
-const bit<16> TYPE_IPV6 = 0x86dd;
-const bit<16> TYPE_GTP = 2152;
+/*const bit<16> TYPE_IPV6 = 0x86dd;
+const bit<16> TYPE_GTP = 2152;*/
 
 /* will be in ipv6 header*/
-const bit<8> TYPE_UDP = 17;
+/*const bit<8> TYPE_UDP = 17;
 const bit<8> TYPE_TCP = 6;
-const bit<8> TYPE_SRV6 = 43;
+const bit<8> TYPE_SRV6 = 43;*/
 
 /* lenght of the SIDs list */
-#define MAX_HOPS 4
+/*#define MAX_HOPS 4*/
 
-const bit<8> pdu_container = 133;
+/*const bit<8> pdu_container = 133;*/
 
 #define REG_READ 8w0
 #define REG_WRITE 8w1
@@ -23,7 +23,7 @@ const bit<8> pdu_container = 133;
 *************************************************************************/
 
 typedef bit<48> macAddr_t;
-typedef bit<128> ip6Addr_t;
+/*typedef bit<128> ip6Addr_t;*/
 
 
 header ethernet_t {
@@ -31,7 +31,7 @@ header ethernet_t {
     macAddr_t srcAddr;
     bit<16>   etherType;
 }
-
+/*
 header ipv6_t {
     bit<4> version;
     bit<8> traffic_class;
@@ -101,11 +101,11 @@ header srv6_t {
 header srv6_list_t {
     ip6Addr_t segment_id;
 }   
-
+*/
 
 struct headers {
     ethernet_t   ethernet;
-    ipv6_t       ipv6_outer;
+/*    ipv6_t       ipv6_outer;
     srv6_t       srv6;
     srv6_list_t[MAX_HOPS]   srv6_list;
     udp_t        udp;
@@ -115,7 +115,7 @@ struct headers {
     ipv6_t       ipv6_inner;
     tcp_t		 tcp_inner;
     udp_t		 udp_inner;
-
+*/
 }
 
 struct user_metadata_t {
@@ -144,11 +144,12 @@ parser MyParser(packet_in packet,
         packet.extract(hdr.ethernet);
         user_metadata.unused = 0;
         digest_data.unused = 0;    
-	transition select(hdr.ethernet.etherType) {
+        transition accept; /*not original*/
+/* ORIGINAL	transition select(hdr.ethernet.etherType) {
             TYPE_IPV6: parse_ipv6_outer;
-        }
+        }*/
     }
-
+/*
     state parse_ipv6_outer {
         packet.extract(hdr.ipv6_outer);
         transition select(hdr.ipv6_outer.next_hdr){
@@ -209,8 +210,8 @@ parser MyParser(packet_in packet,
     	packet.extract(hdr.tcp_inner);
     	transition accept;
     }
-
-
+*/
+    
 }
 
 
@@ -223,7 +224,7 @@ control MyIngress(inout headers hdr,
                  inout digest_data_t digest_data,
                  inout sume_metadata_t sume_metadata) {
 
-
+/* ORIGINAL BEGIN
     action ipv6_forward(macAddr_t dstAddr, port_t port) {
         sume_metadata.dst_port = port;
         hdr.ethernet.srcAddr = hdr.ethernet.dstAddr;
@@ -253,7 +254,7 @@ control MyIngress(inout headers hdr,
         build_srv6(2);
     }   
 
-        action srv6_t_insert_3(ip6Addr_t s1, ip6Addr_t s2,  ip6Addr_t s3){
+    action srv6_t_insert_3(ip6Addr_t s1, ip6Addr_t s2,  ip6Addr_t s3){
         hdr.ipv6_outer.payload_len = hdr.ipv6_outer.payload_len + 56;
         hdr.srv6_list[0].setValid();
         hdr.srv6_list[0].segment_id = s1;
@@ -275,7 +276,7 @@ control MyIngress(inout headers hdr,
             ipv6_forward;
             NoAction;
         }
-        default_action = NoAction();
+        default_action = NoAction;
     }
 
 
@@ -296,17 +297,33 @@ control MyIngress(inout headers hdr,
             srv6_t_insert_3;
         }
     }
+ORIGINAL END*/ 
+    action mac_forward(port_t port){
+        sume_metadata.dst_port = port;
+    }
 
+    table mac_exact{
+        key = {
+            hdr.ethernet.dstAddr:   exact;
+        }
+        actions = {
+            mac_forward;
+            NoAction;
+        }
+        size = 64;
+        default_action = NoAction;
+    }
 
     apply{
         
-
+/* ORIGINAL BEGIN
         if (!hdr.srv6.isValid() && hdr.gtp.spare == 0){
             teid_exact.apply();
         } 
         ipv6_outer_lpm.apply();
     }
-
+ORIGINAL END*/
+    mac_exact.apply();
 }
 
 
@@ -322,7 +339,7 @@ control MyDeparser(packet_out packet,
 
     apply {
         packet.emit(hdr.ethernet);
-        packet.emit(hdr.ipv6_outer);
+/*        packet.emit(hdr.ipv6_outer);
         packet.emit(hdr.srv6);
         packet.emit(hdr.srv6_list);
         packet.emit(hdr.udp);
@@ -332,7 +349,7 @@ control MyDeparser(packet_out packet,
         packet.emit(hdr.ipv6_inner);
         packet.emit(hdr.tcp_inner);
         packet.emit(hdr.udp_inner);
-        
+ */       
     }
 }   
 
