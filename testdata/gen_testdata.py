@@ -106,7 +106,7 @@ pktCnt = 0
 
 def pkt_send():
     global pktCnt
-    pkt = Ether(src=MAC1, dst=MAC2) / IPv6(src="fc00::1",dst="fc00::2") / ICMPv6EchoRequest()
+    pkt = Ether(src=MAC1, dst=MAC2) / IP(src="10.0.0.1",dst="10.0.0.2") / ICMPv6EchoRequest()
     pkt = pad_pkt(pkt, 64)
     applyPkt(pkt, 'nf0', pktCnt)
     pktCnt += 1
