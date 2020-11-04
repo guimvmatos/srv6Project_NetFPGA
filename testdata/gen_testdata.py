@@ -100,5 +100,20 @@ def write_pcap_files():
 #####################
 
 
+MAC1 = "08:11:11:11:11:08"
+MAC2 = "08:22:22:22:22:08"
+pktCnt = 0
+
+def pkt_send():
+    global pktCnt
+    pkt = Ether(src=MAC1, dst=MAC2) / IPv6(src="fc00::1",dst="fc00::2") / ICMPv6EchoRequest()
+    pkt = pad_pkt(pkt, 64)
+    applyPkt(pkt, 'nf0', pktCnt)
+    pktCnt += 1
+    expPkt(pkt, 'nf0')
+
+for i in range(5):
+    pkt_send()
+
 write_pcap_files()
 
