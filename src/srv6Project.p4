@@ -1,7 +1,7 @@
 /* -*- P4_16 -*- */
 #include <core.p4>
 #include <sume_switch.p4>
-/* ok */
+
 /* will be in udp header */
 const bit<16> TYPE_IPV6 = 0x86dd;
 const bit<16> TYPE_GTP = 2152;
