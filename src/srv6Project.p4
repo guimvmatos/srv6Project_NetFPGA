@@ -62,7 +62,7 @@ control MyIngress(inout headers hdr,
                  inout sume_metadata_t sume_metadata) {
 
     action mac_forward(port_t port){
-        sume_metadata.dst_port = sume_metadata.srcAddr;
+        sume_metadata.dst_port = sume_metadata.src_port;
     }
 
     table mac_exact{
