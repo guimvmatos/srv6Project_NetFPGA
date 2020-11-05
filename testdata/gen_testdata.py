@@ -110,7 +110,7 @@ def pkt_send():
     pkt = pad_pkt(pkt, 64)
     applyPkt(pkt, 'nf0', pktCnt)
     pktCnt += 1
-    expPkt(pkt, 'nf0')
+    expPkt(pkt, 'nf1')
 
 for i in range(5):
     pkt_send()
