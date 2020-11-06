@@ -112,6 +112,7 @@ control MyDeparser(packet_out packet,
 
     apply {
         packet.emit(hdr.ethernet);
+        packet.emit(hdr.ipv6);
  
     }
 }   
