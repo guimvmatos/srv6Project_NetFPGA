@@ -32,7 +32,7 @@ header ipv6_t {
 
 struct headers {
     ethernet_t   ethernet;
-    ipv6_t       ipv6;
+    ipv6_t       ipv6_outer;
 }
 
 struct user_metadata_t {
