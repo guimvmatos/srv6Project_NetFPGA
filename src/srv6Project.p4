@@ -17,8 +17,20 @@ header ethernet_t {
     bit<16>   etherType;
 }
 
+header ipv6_t {
+    bit<4> version;
+    bit<8> traffic_class;
+    bit<20> flow_label;
+    bit<16> payload_len;
+    bit<8> next_hdr;
+    bit<8> hop_limit;
+    bit<128> src_addr;
+    bit<128> dst_addr;
+}
+
 struct headers {
     ethernet_t   ethernet;
+    ipv6_t       ipv6;
 }
 
 struct user_metadata_t {
@@ -47,8 +59,14 @@ parser MyParser(packet_in packet,
         packet.extract(hdr.ethernet);
         user_metadata.unused = 0;
         digest_data.unused = 0;    
-        transition accept; 
+        transition select(hdr.ethernet.etherType) {
+            TYPE_IPV6: parse_ipv6_outer;
+        }
+    }
 
+    state parse_ipv6_outer {
+        packet.extract(hdr.ipv6_outer);
+        transition accept;
     }
 }
 
