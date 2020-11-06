@@ -1,0 +1,4 @@
+NumberHits:0
+Timestamp: Thu Nov 05 22:14:20 UTC 2020
+VLNV: NetFPGA:NetFPGA:nf_riffa_dma:1.0
+SynthRuntime: 1510

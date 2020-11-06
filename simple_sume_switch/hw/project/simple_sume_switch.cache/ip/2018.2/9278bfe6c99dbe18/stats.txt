@@ -1,0 +1,4 @@
+NumberHits:7
+Timestamp: Fri Nov 06 01:37:18 UTC 2020
+VLNV: xilinx.com:ip:axi_data_fifo:2.1
+SynthRuntime: 891

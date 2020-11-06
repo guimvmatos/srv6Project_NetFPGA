@@ -1,0 +1,166 @@
+{
+  "MyParser" : {
+    "px_io_tuples" : {
+      "1" : {
+        "px_name" : "hdr",
+        "p4_name" : "hdr",
+        "px_type_name" : "hdr_t",
+        "direction" : "out"
+      },
+      "2" : {
+        "px_name" : "user_metadata",
+        "p4_name" : "user_metadata",
+        "px_type_name" : "user_metadata_t_0",
+        "direction" : "out"
+      },
+      "3" : {
+        "px_name" : "digest_data",
+        "p4_name" : "digest_data",
+        "px_type_name" : "digest_data_t_0",
+        "direction" : "out"
+      },
+      "4" : {
+        "px_name" : "sume_metadata",
+        "p4_name" : "sume_metadata",
+        "px_type_name" : "sume_metadata_t_0",
+        "direction" : "inout"
+      }
+    },
+    "px_engines" : [
+      {
+        "px_name" : "MyParser",
+        "px_type_name" : "MyParser_t"
+      }
+    ],
+    "px_system_connections" : []
+  },
+  "MyIngress" : {
+    "px_io_tuples" : {
+      "0" : {
+        "px_name" : "hdr",
+        "p4_name" : "hdr",
+        "px_type_name" : "hdr_t_0",
+        "direction" : "inout"
+      },
+      "1" : {
+        "px_name" : "user_metadata",
+        "p4_name" : "user_metadata",
+        "px_type_name" : "user_metadata_t_1",
+        "direction" : "inout"
+      },
+      "2" : {
+        "px_name" : "digest_data",
+        "p4_name" : "digest_data",
+        "px_type_name" : "digest_data_t_1",
+        "direction" : "inout"
+      },
+      "3" : {
+        "px_name" : "sume_metadata",
+        "p4_name" : "sume_metadata",
+        "px_type_name" : "sume_metadata_t_1",
+        "direction" : "inout"
+      }
+    },
+    "px_engines" : [
+      {
+        "px_name" : "MyIngress_lvl",
+        "px_type_name" : "MyIngress_lvl_t"
+      },
+      {
+        "px_name" : "mac_exact",
+        "px_type_name" : "mac_exact_t"
+      },
+      {
+        "px_name" : "MyIngress_lvl_0",
+        "px_type_name" : "MyIngress_lvl_0_t"
+      }
+    ],
+    "px_system_connections" : ["MyIngress_lvl_0.digest_data = MyIngress_lvl.digest_data", "MyIngress_lvl_0.hdr = MyIngress_lvl.hdr", "MyIngress_lvl_0.local_state = MyIngress_lvl.local_state", "MyIngress_lvl_0.sume_metadata = MyIngress_lvl.sume_metadata", "MyIngress_lvl_0.user_metadata = MyIngress_lvl.user_metadata", "mac_exact.request = MyIngress_lvl.mac_exact_req", "MyIngress_lvl_0.mac_exact_resp = mac_exact.response"],
+    "px_lookups" : [
+      {
+        "px_name" : "mac_exact",
+        "p4_name" : "mac_exact",
+        "px_class" : "LookupEngine",
+        "px_type_name" : "mac_exact_t",
+        "match_type" : "EM",
+        "action_ids" : {
+          "MyIngress.mac_forward" : 1,
+          ".NoAction" : 2
+        },
+        "response_fields" : [
+          {
+            "px_name" : "hit",
+            "type" : "bits",
+            "size" : 1
+          },
+          {
+            "px_name" : "action_run",
+            "type" : "bits",
+            "size" : 2
+          },
+          {
+            "px_name" : "mac_forward_0",
+            "type" : "struct",
+            "fields" : [
+              {
+                "px_name" : "port",
+                "type" : "bits",
+                "size" : 8
+              }
+            ],
+            "p4_action" : "MyIngress.mac_forward"
+          }
+        ],
+        "request_fields" : [
+          {
+            "px_name" : "lookup_request_key",
+            "p4_name" : "hdr.ethernet.dstAddr",
+            "type" : "bits",
+            "size" : 48
+          }
+        ],
+        "annotations" : {
+          "name" : ["MyIngress.mac_exact"],
+          "Xilinx_ExternallyConnected" : ["0"],
+          "Xilinx_LookupEngineType" : ["EM"]
+        }
+      }
+    ],
+    "px_user_engines" : []
+  },
+  "MyDeparser" : {
+    "px_io_tuples" : {
+      "1" : {
+        "px_name" : "hdr",
+        "p4_name" : "hdr",
+        "px_type_name" : "hdr_t_1",
+        "direction" : "in"
+      },
+      "2" : {
+        "px_name" : "user_metadata",
+        "p4_name" : "user_metadata",
+        "px_type_name" : "user_metadata_t_2",
+        "direction" : "in"
+      },
+      "3" : {
+        "px_name" : "digest_data",
+        "p4_name" : "digest_data",
+        "px_type_name" : "digest_data_t_2",
+        "direction" : "inout"
+      },
+      "4" : {
+        "px_name" : "sume_metadata",
+        "p4_name" : "sume_metadata",
+        "px_type_name" : "sume_metadata_t_2",
+        "direction" : "inout"
+      }
+    },
+    "px_engines" : [
+      {
+        "px_name" : "MyDeparser",
+        "px_type_name" : "MyDeparser_t"
+      }
+    ],
+    "px_system_connections" : []
+  }
+}

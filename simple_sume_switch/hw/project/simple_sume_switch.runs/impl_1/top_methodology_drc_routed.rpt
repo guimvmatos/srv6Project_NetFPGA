@@ -1,0 +1,1696 @@
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
+| Date         : Fri Nov  6 04:52:24 2020
+| Host         : netfpga-Z170XP-SLI running 64-bit Ubuntu 16.04.4 LTS
+| Command      : report_methodology -file top_methodology_drc_routed.rpt -pb top_methodology_drc_routed.pb -rpx top_methodology_drc_routed.rpx
+| Design       : top
+| Device       : xc7vx690tffg1761-3
+| Speed File   : -3
+| Design State : Routed
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+Report Methodology
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+             Max violations: <unlimited>
+             Violations found: 320
++-----------+----------+--------------------------------------------------------+------------+
+| Rule      | Severity | Description                                            | Violations |
++-----------+----------+--------------------------------------------------------+------------+
+| LUTAR-1   | Warning  | LUT drives async reset alert                           | 23         |
+| PDRC-190  | Warning  | Suboptimally placed synchronized register chain        | 24         |
+| SYNTH-6   | Warning  | Timing of a block RAM might be sub-optimal             | 130        |
+| TIMING-2  | Warning  | Invalid primary clock source pin                       | 2          |
+| TIMING-3  | Warning  | Invalid primary clock on Clock Modifying Block         | 1          |
+| TIMING-4  | Warning  | Invalid primary clock redefinition on a clock tree     | 2          |
+| TIMING-6  | Warning  | No common primary clock between related clocks         | 1          |
+| TIMING-7  | Warning  | No common node between related clocks                  | 1          |
+| TIMING-9  | Warning  | Unknown CDC Logic                                      | 1          |
+| TIMING-17 | Warning  | Non-clocked sequential cell                            | 4          |
+| TIMING-18 | Warning  | Missing input or output delay                          | 22         |
+| TIMING-24 | Warning  | Overridden Max delay datapath only                     | 75         |
+| TIMING-28 | Warning  | Auto-derived clock referenced by a timing constraint   | 6          |
+| XDCB-5    | Warning  | Runtime inefficient way to find pin objects            | 10         |
+| XDCC-1    | Warning  | Scoped Clock constraint overwritten with the same name | 9          |
+| XDCC-7    | Warning  | Scoped Clock constraint overwritten on the same source | 9          |
++-----------+----------+--------------------------------------------------------+------------+
+
+2. REPORT DETAILS
+-----------------
+LUTAR-1#1 Warning
+LUT drives async reset alert  
+LUT cell control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[0].channel/channel/rxPort/mainFifo/fifo/rdPtrEmpty/rDir_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[0].channel/channel/rxPort/mainFifo/fifo/asyncCompare/rDir_reg/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#2 Warning
+LUT drives async reset alert  
+LUT cell control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[0].channel/channel/rxPort/reader/rRdValid_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[0].channel/channel/rxPort/mainFifo/fifo/rdPtrEmpty/rBinP1_reg[1]/CLR, control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[0].channel/channel/rxPort/mainFifo/fifo/rdPtrEmpty/rBinP1_reg[2]/CLR, control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[0].channel/channel/rxPort/mainFifo/fifo/rdPtrEmpty/rBinP1_reg[3]/CLR, control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[0].channel/channel/rxPort/mainFifo/fifo/rdPtrEmpty/rBinP1_reg[4]/CLR, control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[0].channel/channel/rxPort/mainFifo/fifo/rdPtrEmpty/rBinP1_reg[5]/CLR, control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[0].channel/channel/rxPort/mainFifo/fifo/rdPtrEmpty/rBinP1_reg[6]/CLR, control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[0].channel/channel/rxPort/mainFifo/fifo/rdPtrEmpty/rBinP1_reg[7]/CLR, control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[0].channel/channel/rxPort/mainFifo/fifo/rdPtrEmpty/rBinP1_reg[8]/CLR, control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[0].channel/channel/rxPort/mainFifo/fifo/rdPtrEmpty/rBin_reg[0]/CLR, control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[0].channel/channel/rxPort/mainFifo/fifo/rdPtrEmpty/rBin_reg[1]/CLR, control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[0].channel/channel/rxPort/mainFifo/fifo/rdPtrEmpty/rBin_reg[2]/CLR, control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[0].channel/channel/rxPort/mainFifo/fifo/rdPtrEmpty/rBin_reg[3]/CLR, control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[0].channel/channel/rxPort/mainFifo/fifo/rdPtrEmpty/rBin_reg[4]/CLR, control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[0].channel/channel/rxPort/mainFifo/fifo/rdPtrEmpty/rBin_reg[5]/CLR, control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[0].channel/channel/rxPort/mainFifo/fifo/rdPtrEmpty/rBin_reg[6]/CLR (the first 15 of 76 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#3 Warning
+LUT drives async reset alert  
+LUT cell control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[0].channel/channel/txPort/gate/fifo/rdPtrEmpty/rDir_i_2__0, with 2 or more inputs, drives asynchronous preset/clear pin(s) control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[0].channel/channel/txPort/gate/fifo/asyncCompare/rDir_reg/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#4 Warning
+LUT drives async reset alert  
+LUT cell control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[1].channel/channel/rxPort/mainFifo/fifo/rdPtrEmpty/rDir_i_2__1, with 2 or more inputs, drives asynchronous preset/clear pin(s) control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[1].channel/channel/rxPort/mainFifo/fifo/asyncCompare/rDir_reg/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#5 Warning
+LUT drives async reset alert  
+LUT cell control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[1].channel/channel/rxPort/reader/rRdValid_i_1__0, with 2 or more inputs, drives asynchronous preset/clear pin(s) control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[1].channel/channel/rxPort/mainFifo/fifo/rdPtrEmpty/rBinP1_reg[1]/CLR, control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[1].channel/channel/rxPort/mainFifo/fifo/rdPtrEmpty/rBinP1_reg[2]/CLR, control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[1].channel/channel/rxPort/mainFifo/fifo/rdPtrEmpty/rBinP1_reg[3]/CLR, control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[1].channel/channel/rxPort/mainFifo/fifo/rdPtrEmpty/rBinP1_reg[4]/CLR, control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[1].channel/channel/rxPort/mainFifo/fifo/rdPtrEmpty/rBinP1_reg[5]/CLR, control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[1].channel/channel/rxPort/mainFifo/fifo/rdPtrEmpty/rBinP1_reg[6]/CLR, control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[1].channel/channel/rxPort/mainFifo/fifo/rdPtrEmpty/rBinP1_reg[7]/CLR, control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[1].channel/channel/rxPort/mainFifo/fifo/rdPtrEmpty/rBinP1_reg[8]/CLR, control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[1].channel/channel/rxPort/mainFifo/fifo/rdPtrEmpty/rBin_reg[0]/CLR, control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[1].channel/channel/rxPort/mainFifo/fifo/rdPtrEmpty/rBin_reg[1]/CLR, control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[1].channel/channel/rxPort/mainFifo/fifo/rdPtrEmpty/rBin_reg[2]/CLR, control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[1].channel/channel/rxPort/mainFifo/fifo/rdPtrEmpty/rBin_reg[3]/CLR, control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[1].channel/channel/rxPort/mainFifo/fifo/rdPtrEmpty/rBin_reg[4]/CLR, control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[1].channel/channel/rxPort/mainFifo/fifo/rdPtrEmpty/rBin_reg[5]/CLR, control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[1].channel/channel/rxPort/mainFifo/fifo/rdPtrEmpty/rBin_reg[6]/CLR (the first 15 of 76 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#6 Warning
+LUT drives async reset alert  
+LUT cell control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[1].channel/channel/txPort/gate/fifo/rdPtrEmpty/rDir_i_2__2, with 2 or more inputs, drives asynchronous preset/clear pin(s) control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[1].channel/channel/txPort/gate/fifo/asyncCompare/rDir_reg/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#7 Warning
+LUT drives async reset alert  
+LUT cell control_sub_i/dma_sub/pcie3_7x_1/inst/gt_top_i/pipe_wrapper_i/pipe_lane[2].pipe_user_i/reg_phy_rdy[1]_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) control_sub_i/dma_sub/pcie3_7x_1/inst/gt_top_i/reg_phy_rdy_reg[0]/PRE, control_sub_i/dma_sub/pcie3_7x_1/inst/gt_top_i/reg_phy_rdy_reg[1]/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#8 Warning
+LUT drives async reset alert  
+LUT cell control_sub_i/dma_sub/pcie3_7x_1/inst/pcie_top_i/pcie_7vx_i/user_reset_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) control_sub_i/dma_sub/pcie3_7x_1/inst/user_reset_int_reg/PRE, control_sub_i/dma_sub/pcie3_7x_1/inst/user_reset_reg/PRE, control_sub_i/dma_sub/pcie3_7x_1/inst/user_reset_reg_replica/PRE, control_sub_i/dma_sub/pcie3_7x_1/inst/user_reset_reg_replica_1/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#9 Warning
+LUT drives async reset alert  
+LUT cell control_sub_i/nf_mbsys/mbsys/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/sel_n_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) control_sub_i/nf_mbsys/mbsys/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/sel_n_reg/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#10 Warning
+LUT drives async reset alert  
+LUT cell nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xmac/inst/bd_a1aa_xmac_0_core/reset_gen/int_rx_rst_async, with 2 or more inputs, drives asynchronous preset/clear pin(s) nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xmac/inst/bd_a1aa_xmac_0_core/reset_gen/sync_rx_rst/reset_async0_reg/PRE, nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xmac/inst/bd_a1aa_xmac_0_core/reset_gen/sync_rx_rst/reset_async1_reg/PRE, nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xmac/inst/bd_a1aa_xmac_0_core/reset_gen/sync_rx_rst/reset_async2_reg/PRE, nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xmac/inst/bd_a1aa_xmac_0_core/reset_gen/sync_rx_rst/reset_async3_reg/PRE, nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xmac/inst/bd_a1aa_xmac_0_core/reset_gen/sync_rx_rst/reset_async4_reg/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#11 Warning
+LUT drives async reset alert  
+LUT cell nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xmac/inst/bd_a1aa_xmac_0_core/reset_gen/int_tx_rst_async, with 2 or more inputs, drives asynchronous preset/clear pin(s) nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xmac/inst/bd_a1aa_xmac_0_core/reset_gen/sync_tx_rst/reset_async0_reg/PRE, nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xmac/inst/bd_a1aa_xmac_0_core/reset_gen/sync_tx_rst/reset_async1_reg/PRE, nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xmac/inst/bd_a1aa_xmac_0_core/reset_gen/sync_tx_rst/reset_async2_reg/PRE, nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xmac/inst/bd_a1aa_xmac_0_core/reset_gen/sync_tx_rst/reset_async3_reg/PRE, nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xmac/inst/bd_a1aa_xmac_0_core/reset_gen/sync_tx_rst/reset_async4_reg/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#12 Warning
+LUT drives async reset alert  
+LUT cell nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/bd_a1aa_xpcs_0_local_clock_reset_block/coreclk_areset_sync_i/sync1_r[4]_i_1__0, with 2 or more inputs, drives asynchronous preset/clear pin(s) nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/bd_a1aa_xpcs_0_local_clock_reset_block/coreclk_reset_tx_sync_i/sync1_r_reg[0]/PRE, nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/bd_a1aa_xpcs_0_local_clock_reset_block/coreclk_reset_tx_sync_i/sync1_r_reg[1]/PRE, nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/bd_a1aa_xpcs_0_local_clock_reset_block/coreclk_reset_tx_sync_i/sync1_r_reg[2]/PRE, nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/bd_a1aa_xpcs_0_local_clock_reset_block/coreclk_reset_tx_sync_i/sync1_r_reg[3]/PRE, nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/bd_a1aa_xpcs_0_local_clock_reset_block/coreclk_reset_tx_sync_i/sync1_r_reg[4]/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#13 Warning
+LUT drives async reset alert  
+LUT cell nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/bd_a1aa_xpcs_0_local_clock_reset_block/coreclk_areset_sync_i/sync1_r[4]_i_1__1, with 2 or more inputs, drives asynchronous preset/clear pin(s) nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/bd_a1aa_xpcs_0_local_clock_reset_block/coreclk_reset_rx_sync_i/sync1_r_reg[0]/PRE, nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/bd_a1aa_xpcs_0_local_clock_reset_block/coreclk_reset_rx_sync_i/sync1_r_reg[1]/PRE, nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/bd_a1aa_xpcs_0_local_clock_reset_block/coreclk_reset_rx_sync_i/sync1_r_reg[2]/PRE, nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/bd_a1aa_xpcs_0_local_clock_reset_block/coreclk_reset_rx_sync_i/sync1_r_reg[3]/PRE, nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/bd_a1aa_xpcs_0_local_clock_reset_block/coreclk_reset_rx_sync_i/sync1_r_reg[4]/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#14 Warning
+LUT drives async reset alert  
+LUT cell nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/bd_a1aa_xpcs_0_local_clock_reset_block/dclk_reset_rx_tmp, with 2 or more inputs, drives asynchronous preset/clear pin(s) nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/bd_a1aa_xpcs_0_local_clock_reset_block/dclk_reset_rx_sync_i/sync1_r_reg[0]/PRE, nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/bd_a1aa_xpcs_0_local_clock_reset_block/dclk_reset_rx_sync_i/sync1_r_reg[1]/PRE, nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/bd_a1aa_xpcs_0_local_clock_reset_block/dclk_reset_rx_sync_i/sync1_r_reg[2]/PRE, nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/bd_a1aa_xpcs_0_local_clock_reset_block/dclk_reset_rx_sync_i/sync1_r_reg[3]/PRE, nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/bd_a1aa_xpcs_0_local_clock_reset_block/dclk_reset_rx_sync_i/sync1_r_reg[4]/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#15 Warning
+LUT drives async reset alert  
+LUT cell nf_10g_interface_1/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_areset_sync_i/sync1_r[4]_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) nf_10g_interface_1/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_reset_tx_sync_i/sync1_r_reg[0]/PRE, nf_10g_interface_1/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_reset_tx_sync_i/sync1_r_reg[1]/PRE, nf_10g_interface_1/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_reset_tx_sync_i/sync1_r_reg[2]/PRE, nf_10g_interface_1/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_reset_tx_sync_i/sync1_r_reg[3]/PRE, nf_10g_interface_1/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_reset_tx_sync_i/sync1_r_reg[4]/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#16 Warning
+LUT drives async reset alert  
+LUT cell nf_10g_interface_1/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_areset_sync_i/sync1_r[4]_i_1__0, with 2 or more inputs, drives asynchronous preset/clear pin(s) nf_10g_interface_1/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_reset_rx_sync_i/sync1_r_reg[0]/PRE, nf_10g_interface_1/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_reset_rx_sync_i/sync1_r_reg[1]/PRE, nf_10g_interface_1/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_reset_rx_sync_i/sync1_r_reg[2]/PRE, nf_10g_interface_1/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_reset_rx_sync_i/sync1_r_reg[3]/PRE, nf_10g_interface_1/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_reset_rx_sync_i/sync1_r_reg[4]/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#17 Warning
+LUT drives async reset alert  
+LUT cell nf_10g_interface_1/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/dclk_reset_rx_tmp, with 2 or more inputs, drives asynchronous preset/clear pin(s) nf_10g_interface_1/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/dclk_reset_rx_sync_i/sync1_r_reg[0]/PRE, nf_10g_interface_1/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/dclk_reset_rx_sync_i/sync1_r_reg[1]/PRE, nf_10g_interface_1/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/dclk_reset_rx_sync_i/sync1_r_reg[2]/PRE, nf_10g_interface_1/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/dclk_reset_rx_sync_i/sync1_r_reg[3]/PRE, nf_10g_interface_1/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/dclk_reset_rx_sync_i/sync1_r_reg[4]/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#18 Warning
+LUT drives async reset alert  
+LUT cell nf_10g_interface_2/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_areset_sync_i/sync1_r[4]_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) nf_10g_interface_2/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_reset_tx_sync_i/sync1_r_reg[0]/PRE, nf_10g_interface_2/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_reset_tx_sync_i/sync1_r_reg[1]/PRE, nf_10g_interface_2/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_reset_tx_sync_i/sync1_r_reg[2]/PRE, nf_10g_interface_2/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_reset_tx_sync_i/sync1_r_reg[3]/PRE, nf_10g_interface_2/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_reset_tx_sync_i/sync1_r_reg[4]/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#19 Warning
+LUT drives async reset alert  
+LUT cell nf_10g_interface_2/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_areset_sync_i/sync1_r[4]_i_1__0, with 2 or more inputs, drives asynchronous preset/clear pin(s) nf_10g_interface_2/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_reset_rx_sync_i/sync1_r_reg[0]/PRE, nf_10g_interface_2/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_reset_rx_sync_i/sync1_r_reg[1]/PRE, nf_10g_interface_2/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_reset_rx_sync_i/sync1_r_reg[2]/PRE, nf_10g_interface_2/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_reset_rx_sync_i/sync1_r_reg[3]/PRE, nf_10g_interface_2/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_reset_rx_sync_i/sync1_r_reg[4]/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#20 Warning
+LUT drives async reset alert  
+LUT cell nf_10g_interface_2/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/dclk_reset_rx_tmp, with 2 or more inputs, drives asynchronous preset/clear pin(s) nf_10g_interface_2/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/dclk_reset_rx_sync_i/sync1_r_reg[0]/PRE, nf_10g_interface_2/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/dclk_reset_rx_sync_i/sync1_r_reg[1]/PRE, nf_10g_interface_2/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/dclk_reset_rx_sync_i/sync1_r_reg[2]/PRE, nf_10g_interface_2/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/dclk_reset_rx_sync_i/sync1_r_reg[3]/PRE, nf_10g_interface_2/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/dclk_reset_rx_sync_i/sync1_r_reg[4]/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#21 Warning
+LUT drives async reset alert  
+LUT cell nf_10g_interface_3/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_areset_sync_i/sync1_r[4]_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) nf_10g_interface_3/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_reset_tx_sync_i/sync1_r_reg[0]/PRE, nf_10g_interface_3/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_reset_tx_sync_i/sync1_r_reg[1]/PRE, nf_10g_interface_3/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_reset_tx_sync_i/sync1_r_reg[2]/PRE, nf_10g_interface_3/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_reset_tx_sync_i/sync1_r_reg[3]/PRE, nf_10g_interface_3/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_reset_tx_sync_i/sync1_r_reg[4]/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#22 Warning
+LUT drives async reset alert  
+LUT cell nf_10g_interface_3/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_areset_sync_i/sync1_r[4]_i_1__0, with 2 or more inputs, drives asynchronous preset/clear pin(s) nf_10g_interface_3/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_reset_rx_sync_i/sync1_r_reg[0]/PRE, nf_10g_interface_3/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_reset_rx_sync_i/sync1_r_reg[1]/PRE, nf_10g_interface_3/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_reset_rx_sync_i/sync1_r_reg[2]/PRE, nf_10g_interface_3/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_reset_rx_sync_i/sync1_r_reg[3]/PRE, nf_10g_interface_3/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/coreclk_reset_rx_sync_i/sync1_r_reg[4]/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#23 Warning
+LUT drives async reset alert  
+LUT cell nf_10g_interface_3/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/dclk_reset_rx_tmp, with 2 or more inputs, drives asynchronous preset/clear pin(s) nf_10g_interface_3/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/dclk_reset_rx_sync_i/sync1_r_reg[0]/PRE, nf_10g_interface_3/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/dclk_reset_rx_sync_i/sync1_r_reg[1]/PRE, nf_10g_interface_3/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/dclk_reset_rx_sync_i/sync1_r_reg[2]/PRE, nf_10g_interface_3/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/dclk_reset_rx_sync_i/sync1_r_reg[3]/PRE, nf_10g_interface_3/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/bd_7ad4_xpcs_0_local_clock_reset_block/dclk_reset_rx_sync_i/sync1_r_reg[4]/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+PDRC-190#1 Warning
+Suboptimally placed synchronized register chain  
+The FDPE cell nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xmac/inst/bd_a1aa_xmac_0_core/reset_gen/sync_rx_rst/reset_async4_reg in site SLICE_X164Y439 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xmac/inst/bd_a1aa_xmac_0_core/reset_gen/sync_rx_rst/reset_sync0_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#2 Warning
+Suboptimally placed synchronized register chain  
+The FDPE cell nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xmac/inst/bd_a1aa_xmac_0_core/reset_gen/sync_tx_rst/reset_async4_reg in site SLICE_X163Y441 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xmac/inst/bd_a1aa_xmac_0_core/reset_gen/sync_tx_rst/reset_sync0_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#3 Warning
+Suboptimally placed synchronized register chain  
+The FDPE cell nf_10g_interface_1/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xmac/inst/bd_7ad4_xmac_0_core/reset_gen/sync_rx_rst/reset_async4_reg in site SLICE_X150Y438 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell nf_10g_interface_1/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xmac/inst/bd_7ad4_xmac_0_core/reset_gen/sync_rx_rst/reset_sync0_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#4 Warning
+Suboptimally placed synchronized register chain  
+The FDPE cell nf_10g_interface_1/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xmac/inst/bd_7ad4_xmac_0_core/reset_gen/sync_tx_rst/reset_async4_reg in site SLICE_X150Y428 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell nf_10g_interface_1/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xmac/inst/bd_7ad4_xmac_0_core/reset_gen/sync_tx_rst/reset_sync0_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#5 Warning
+Suboptimally placed synchronized register chain  
+The FDPE cell nf_10g_interface_2/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xmac/inst/bd_7ad4_xmac_0_core/reset_gen/sync_rx_rst/reset_async4_reg in site SLICE_X183Y429 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell nf_10g_interface_2/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xmac/inst/bd_7ad4_xmac_0_core/reset_gen/sync_rx_rst/reset_sync0_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#6 Warning
+Suboptimally placed synchronized register chain  
+The FDPE cell nf_10g_interface_2/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xmac/inst/bd_7ad4_xmac_0_core/reset_gen/sync_tx_rst/reset_async4_reg in site SLICE_X175Y425 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell nf_10g_interface_2/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xmac/inst/bd_7ad4_xmac_0_core/reset_gen/sync_tx_rst/reset_sync0_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#7 Warning
+Suboptimally placed synchronized register chain  
+The FDPE cell nf_10g_interface_3/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xmac/inst/bd_7ad4_xmac_0_core/reset_gen/sync_rx_rst/reset_async4_reg in site SLICE_X196Y425 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell nf_10g_interface_3/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xmac/inst/bd_7ad4_xmac_0_core/reset_gen/sync_rx_rst/reset_sync0_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#8 Warning
+Suboptimally placed synchronized register chain  
+The FDPE cell nf_10g_interface_3/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xmac/inst/bd_7ad4_xmac_0_core/reset_gen/sync_tx_rst/reset_async4_reg in site SLICE_X181Y422 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell nf_10g_interface_3/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xmac/inst/bd_7ad4_xmac_0_core/reset_gen/sync_tx_rst/reset_sync0_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#9 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xmac/inst/bd_a1aa_xmac_0_core/reset_gen/sync_rx_rst/reset_sync0_reg in site SLICE_X164Y440 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xmac/inst/bd_a1aa_xmac_0_core/reset_gen/sync_rx_rst/reset_sync1_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#10 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xmac/inst/bd_a1aa_xmac_0_core/reset_gen/sync_tx_rst/reset_sync0_reg in site SLICE_X163Y442 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xmac/inst/bd_a1aa_xmac_0_core/reset_gen/sync_tx_rst/reset_sync1_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#11 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell nf_10g_interface_0/inst/nf_10g_interface_shared_i/xge_attachment/tx_fifo_rst/sync1_r_reg[5] in site SLICE_X109Y418 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell nf_10g_interface_0/inst/nf_10g_interface_shared_i/xge_attachment/tx_fifo_intf/tx_info_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gsckt_wrst.gic_rst.xpm_cdc_sync_rst_inst_wrst/syncstages_ff_reg[0] is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#12 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell nf_10g_interface_0/inst/nf_10g_interface_shared_i/xge_attachment/tx_fifo_rst/sync1_r_reg[5] in site SLICE_X109Y418 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell nf_10g_interface_0/inst/nf_10g_interface_shared_i/xge_attachment/tx_fifo_intf/tx_info_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gsckt_wrst.xpm_cdc_sync_rst_inst_wrst/syncstages_ff_reg[0] is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#13 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell nf_10g_interface_1/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xmac/inst/bd_7ad4_xmac_0_core/reset_gen/sync_rx_rst/reset_sync0_reg in site SLICE_X150Y439 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell nf_10g_interface_1/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xmac/inst/bd_7ad4_xmac_0_core/reset_gen/sync_rx_rst/reset_sync1_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#14 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell nf_10g_interface_1/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xmac/inst/bd_7ad4_xmac_0_core/reset_gen/sync_tx_rst/reset_sync0_reg in site SLICE_X150Y429 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell nf_10g_interface_1/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xmac/inst/bd_7ad4_xmac_0_core/reset_gen/sync_tx_rst/reset_sync1_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#15 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell nf_10g_interface_1/inst/nf_10g_interface_block_i/xge_attachment/tx_fifo_rst/sync1_r_reg[5] in site SLICE_X119Y420 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell nf_10g_interface_1/inst/nf_10g_interface_block_i/xge_attachment/tx_fifo_intf/tx_info_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gsckt_wrst.gic_rst.xpm_cdc_sync_rst_inst_wrst/syncstages_ff_reg[0] is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#16 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell nf_10g_interface_1/inst/nf_10g_interface_block_i/xge_attachment/tx_fifo_rst/sync1_r_reg[5] in site SLICE_X119Y420 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell nf_10g_interface_1/inst/nf_10g_interface_block_i/xge_attachment/tx_fifo_intf/tx_info_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gsckt_wrst.xpm_cdc_sync_rst_inst_wrst/syncstages_ff_reg[0] is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#17 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell nf_10g_interface_2/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xmac/inst/bd_7ad4_xmac_0_core/reset_gen/sync_rx_rst/reset_sync0_reg in site SLICE_X183Y430 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell nf_10g_interface_2/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xmac/inst/bd_7ad4_xmac_0_core/reset_gen/sync_rx_rst/reset_sync1_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#18 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell nf_10g_interface_2/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xmac/inst/bd_7ad4_xmac_0_core/reset_gen/sync_tx_rst/reset_sync0_reg in site SLICE_X175Y426 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell nf_10g_interface_2/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xmac/inst/bd_7ad4_xmac_0_core/reset_gen/sync_tx_rst/reset_sync1_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#19 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell nf_10g_interface_2/inst/nf_10g_interface_block_i/xge_attachment/tx_fifo_rst/sync1_r_reg[5] in site SLICE_X128Y418 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell nf_10g_interface_2/inst/nf_10g_interface_block_i/xge_attachment/tx_fifo_intf/tx_info_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gsckt_wrst.gic_rst.xpm_cdc_sync_rst_inst_wrst/syncstages_ff_reg[0] is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#20 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell nf_10g_interface_2/inst/nf_10g_interface_block_i/xge_attachment/tx_fifo_rst/sync1_r_reg[5] in site SLICE_X128Y418 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell nf_10g_interface_2/inst/nf_10g_interface_block_i/xge_attachment/tx_fifo_intf/tx_info_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gsckt_wrst.xpm_cdc_sync_rst_inst_wrst/syncstages_ff_reg[0] is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#21 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell nf_10g_interface_3/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xmac/inst/bd_7ad4_xmac_0_core/reset_gen/sync_rx_rst/reset_sync0_reg in site SLICE_X196Y426 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell nf_10g_interface_3/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xmac/inst/bd_7ad4_xmac_0_core/reset_gen/sync_rx_rst/reset_sync1_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#22 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell nf_10g_interface_3/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xmac/inst/bd_7ad4_xmac_0_core/reset_gen/sync_tx_rst/reset_sync0_reg in site SLICE_X181Y423 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell nf_10g_interface_3/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xmac/inst/bd_7ad4_xmac_0_core/reset_gen/sync_tx_rst/reset_sync1_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#23 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell nf_10g_interface_3/inst/nf_10g_interface_block_i/xge_attachment/tx_fifo_rst/sync1_r_reg[5] in site SLICE_X144Y392 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell nf_10g_interface_3/inst/nf_10g_interface_block_i/xge_attachment/tx_fifo_intf/tx_info_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gsckt_wrst.gic_rst.xpm_cdc_sync_rst_inst_wrst/syncstages_ff_reg[0] is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#24 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell nf_10g_interface_3/inst/nf_10g_interface_block_i/xge_attachment/tx_fifo_rst/sync1_r_reg[5] in site SLICE_X144Y392 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell nf_10g_interface_3/inst/nf_10g_interface_block_i/xge_attachment/tx_fifo_intf/tx_info_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gsckt_wrst.xpm_cdc_sync_rst_inst_wrst/syncstages_ff_reg[0] is not placed in the same (SLICE) site.
+Related violations: <none>
+
+SYNTH-6#1 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_10g_interface_0/inst/nf_10g_interface_shared_i/xge_attachment/converter_rx/input_fifo/fifo/queue_reg_0, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#2 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_10g_interface_0/inst/nf_10g_interface_shared_i/xge_attachment/converter_rx/input_fifo/fifo/queue_reg_1, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#3 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[0].output_fifo/fifo/queue_reg_0, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#4 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[0].output_fifo/fifo/queue_reg_1, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#5 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[0].output_fifo/fifo/queue_reg_12, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#6 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[0].output_fifo/fifo/queue_reg_13, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#7 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[0].output_fifo/fifo/queue_reg_14, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#8 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[0].output_fifo/fifo/queue_reg_15, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#9 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[0].output_fifo/fifo/queue_reg_16, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#10 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[0].output_fifo/fifo/queue_reg_17, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#11 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[0].output_fifo/fifo/queue_reg_18, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#12 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[0].output_fifo/fifo/queue_reg_19, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#13 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[0].output_fifo/fifo/queue_reg_2, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#14 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[0].output_fifo/fifo/queue_reg_20, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#15 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[0].output_fifo/fifo/queue_reg_21, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#16 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[0].output_fifo/fifo/queue_reg_22, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#17 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[0].output_fifo/fifo/queue_reg_23, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#18 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[0].output_fifo/fifo/queue_reg_28, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#19 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[0].output_fifo/fifo/queue_reg_29, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#20 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[0].output_fifo/fifo/queue_reg_3, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#21 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[0].output_fifo/fifo/queue_reg_30, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#22 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[0].output_fifo/fifo/queue_reg_31, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#23 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[0].output_fifo/fifo/queue_reg_4, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#24 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[0].output_fifo/fifo/queue_reg_5, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#25 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[0].output_fifo/fifo/queue_reg_6, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#26 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[1].output_fifo/fifo/queue_reg_0, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#27 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[1].output_fifo/fifo/queue_reg_1, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#28 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[1].output_fifo/fifo/queue_reg_10, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#29 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[1].output_fifo/fifo/queue_reg_11, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#30 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[1].output_fifo/fifo/queue_reg_12, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#31 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[1].output_fifo/fifo/queue_reg_13, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#32 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[1].output_fifo/fifo/queue_reg_15, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#33 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[1].output_fifo/fifo/queue_reg_16, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#34 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[1].output_fifo/fifo/queue_reg_17, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#35 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[1].output_fifo/fifo/queue_reg_18, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#36 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[1].output_fifo/fifo/queue_reg_19, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#37 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[1].output_fifo/fifo/queue_reg_2, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#38 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[1].output_fifo/fifo/queue_reg_20, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#39 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[1].output_fifo/fifo/queue_reg_21, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#40 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[1].output_fifo/fifo/queue_reg_22, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#41 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[1].output_fifo/fifo/queue_reg_23, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#42 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[1].output_fifo/fifo/queue_reg_24, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#43 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[1].output_fifo/fifo/queue_reg_25, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#44 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[1].output_fifo/fifo/queue_reg_26, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#45 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[1].output_fifo/fifo/queue_reg_27, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#46 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[1].output_fifo/fifo/queue_reg_28, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#47 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[1].output_fifo/fifo/queue_reg_29, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#48 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[1].output_fifo/fifo/queue_reg_3, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#49 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[1].output_fifo/fifo/queue_reg_30, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#50 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[1].output_fifo/fifo/queue_reg_31, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#51 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[1].output_fifo/fifo/queue_reg_32, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#52 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[1].output_fifo/fifo/queue_reg_4, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#53 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[1].output_fifo/fifo/queue_reg_5, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#54 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[1].output_fifo/fifo/queue_reg_6, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#55 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[1].output_fifo/fifo/queue_reg_7, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#56 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[1].output_fifo/fifo/queue_reg_8, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#57 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[1].output_fifo/fifo/queue_reg_9, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#58 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[2].output_fifo/fifo/queue_reg_10, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#59 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[2].output_fifo/fifo/queue_reg_12, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#60 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[2].output_fifo/fifo/queue_reg_14, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#61 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[2].output_fifo/fifo/queue_reg_15, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#62 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[2].output_fifo/fifo/queue_reg_20, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#63 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[2].output_fifo/fifo/queue_reg_21, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#64 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[2].output_fifo/fifo/queue_reg_22, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#65 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[2].output_fifo/fifo/queue_reg_25, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#66 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[2].output_fifo/fifo/queue_reg_26, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#67 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[2].output_fifo/fifo/queue_reg_27, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#68 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[2].output_fifo/fifo/queue_reg_28, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#69 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[2].output_fifo/fifo/queue_reg_29, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#70 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[2].output_fifo/fifo/queue_reg_3, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#71 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[2].output_fifo/fifo/queue_reg_30, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#72 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[2].output_fifo/fifo/queue_reg_31, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#73 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[2].output_fifo/fifo/queue_reg_32, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#74 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[2].output_fifo/fifo/queue_reg_4, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#75 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[2].output_fifo/fifo/queue_reg_5, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#76 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[2].output_fifo/fifo/queue_reg_6, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#77 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[2].output_fifo/fifo/queue_reg_7, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#78 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[2].output_fifo/fifo/queue_reg_9, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#79 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[3].output_fifo/fifo/queue_reg_0, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#80 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[3].output_fifo/fifo/queue_reg_12, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#81 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[3].output_fifo/fifo/queue_reg_17, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#82 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[3].output_fifo/fifo/queue_reg_28, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#83 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[3].output_fifo/fifo/queue_reg_3, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#84 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[3].output_fifo/fifo/queue_reg_32, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#85 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[3].output_fifo/fifo/queue_reg_4, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#86 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[3].output_fifo/fifo/queue_reg_5, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#87 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[3].output_fifo/fifo/queue_reg_6, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#88 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[3].output_fifo/fifo/queue_reg_8, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#89 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[3].output_fifo/fifo/queue_reg_9, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#90 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].metadata_fifo/fifo/queue_reg_2, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#91 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].metadata_fifo/fifo/queue_reg_3, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#92 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].metadata_fifo/fifo/queue_reg_4, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#93 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].metadata_fifo/fifo/queue_reg_5, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#94 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].metadata_fifo/fifo/queue_reg_6, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#95 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].metadata_fifo/fifo/queue_reg_7, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#96 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].output_fifo/fifo/queue_reg_0, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#97 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].output_fifo/fifo/queue_reg_1, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#98 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].output_fifo/fifo/queue_reg_10, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#99 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].output_fifo/fifo/queue_reg_11, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#100 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].output_fifo/fifo/queue_reg_12, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#101 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].output_fifo/fifo/queue_reg_13, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#102 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].output_fifo/fifo/queue_reg_14, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#103 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].output_fifo/fifo/queue_reg_15, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#104 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].output_fifo/fifo/queue_reg_16, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#105 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].output_fifo/fifo/queue_reg_17, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#106 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].output_fifo/fifo/queue_reg_18, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#107 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].output_fifo/fifo/queue_reg_19, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#108 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].output_fifo/fifo/queue_reg_2, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#109 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].output_fifo/fifo/queue_reg_20, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#110 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].output_fifo/fifo/queue_reg_21, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#111 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].output_fifo/fifo/queue_reg_22, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#112 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].output_fifo/fifo/queue_reg_23, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#113 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].output_fifo/fifo/queue_reg_24, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#114 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].output_fifo/fifo/queue_reg_25, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#115 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].output_fifo/fifo/queue_reg_26, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#116 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].output_fifo/fifo/queue_reg_27, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#117 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].output_fifo/fifo/queue_reg_28, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#118 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].output_fifo/fifo/queue_reg_3, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#119 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].output_fifo/fifo/queue_reg_31, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#120 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].output_fifo/fifo/queue_reg_32, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#121 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].output_fifo/fifo/queue_reg_4, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#122 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].output_fifo/fifo/queue_reg_5, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#123 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].output_fifo/fifo/queue_reg_6, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#124 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].output_fifo/fifo/queue_reg_7, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#125 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].output_fifo/fifo/queue_reg_8, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#126 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/bram_output_queues_1/inst/sss_output_queues[4].output_fifo/fifo/queue_reg_9, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#127 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/input_arbiter_drr_v1_0/inst/in_arb_queues[3].in_arb_fifo/fifo/queue_reg_0, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#128 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/input_arbiter_drr_v1_0/inst/in_arb_queues[3].in_arb_fifo/fifo/queue_reg_1, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#129 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/input_arbiter_drr_v1_0/inst/in_arb_queues[3].in_arb_fifo/fifo/queue_reg_2, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+SYNTH-6#130 Warning
+Timing of a block RAM might be sub-optimal  
+The timing for the instance nf_datapath_0/input_arbiter_drr_v1_0/inst/in_arb_queues[3].in_arb_fifo/fifo/queue_reg_3, implemented as a block RAM, might be sub-optimal as no output register was merged into the block
+Related violations: <none>
+
+TIMING-2#1 Warning
+Invalid primary clock source pin  
+A primary clock axi_clocking_i/clk_wiz_i/inst/clk_in1 is created on an inappropriate pin axi_clocking_i/clk_wiz_i/inst/clk_in1. It is recommended to create a primary clock only on a proper clock source (input port or primitive output pin with no timing arc)
+Related violations: <none>
+
+TIMING-2#2 Warning
+Invalid primary clock source pin  
+A primary clock clk_200 is created on an inappropriate pin axi_clocking_i/clk_wiz_i/clk_out1. It is recommended to create a primary clock only on a proper clock source (input port or primitive output pin with no timing arc)
+Related violations: <none>
+
+TIMING-3#1 Warning
+Invalid primary clock on Clock Modifying Block  
+A primary clock sys_clk is created on the output pin or net IBUFDS_GTE2_inst/O of a Clock Modifying Block
+Related violations: <none>
+
+TIMING-4#1 Warning
+Invalid primary clock redefinition on a clock tree  
+Invalid clock redefinition on a clock tree. The primary clock axi_clocking_i/clk_wiz_i/inst/clk_in1 is defined downstream of clock fpga_sysclk_p and overrides its insertion delay and/or waveform definition
+Related violations: <none>
+
+TIMING-4#2 Warning
+Invalid primary clock redefinition on a clock tree  
+Invalid clock redefinition on a clock tree. The primary clock clk_200 is defined downstream of clock clk_out1_clk_wiz_ip and overrides its insertion delay and/or waveform definition
+Related violations: <none>
+
+TIMING-6#1 Warning
+No common primary clock between related clocks  
+The clocks clk_200 and sys_clk are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks clk_200] -to [get_clocks sys_clk]
+Related violations: <none>
+
+TIMING-7#1 Warning
+No common node between related clocks  
+The clocks clk_200 and sys_clk are related (timed together) but they have no common node. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks clk_200] -to [get_clocks sys_clk]
+Related violations: <none>
+
+TIMING-9#1 Warning
+Unknown CDC Logic  
+One or more asynchronous Clock Domain Crossing has been detected between 2 clock domains through a set_false_path or a set_clock_groups or set_max_delay -datapath_only constraint but no double-registers logic synchronizer has been found on the side of the capture clock. It is recommended to run report_cdc for a complete and detailed CDC coverage. Please consider using XPM_CDC to avoid Critical severities
+Related violations: <none>
+
+TIMING-17#1 Warning
+Non-clocked sequential cell  
+The clock pin control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[0].channel/channel/rxPort/mainFifo/fifo/asyncCompare/rDir_reg/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#2 Warning
+Non-clocked sequential cell  
+The clock pin control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[0].channel/channel/txPort/gate/fifo/asyncCompare/rDir_reg/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#3 Warning
+Non-clocked sequential cell  
+The clock pin control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[1].channel/channel/rxPort/mainFifo/fifo/asyncCompare/rDir_reg/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#4 Warning
+Non-clocked sequential cell  
+The clock pin control_sub_i/dma_sub/nf_riffa_dma_1/inst/riffa/riffa_inst/channels[1].channel/channel/txPort/gate/fifo/asyncCompare/rDir_reg/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-18#1 Warning
+Missing input or output delay  
+An input delay is missing on i2c_clk relative to clock(s) sys_clk
+Related violations: <none>
+
+TIMING-18#2 Warning
+Missing input or output delay  
+An input delay is missing on i2c_data relative to clock(s) sys_clk
+Related violations: <none>
+
+TIMING-18#3 Warning
+Missing input or output delay  
+An input delay is missing on sfp0_tx_abs relative to clock(s) nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/RXOUTCLK, xphy_refclk_p
+Related violations: <none>
+
+TIMING-18#4 Warning
+Missing input or output delay  
+An input delay is missing on sfp1_tx_abs relative to clock(s) nf_10g_interface_1/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/RXOUTCLK, xphy_refclk_p
+Related violations: <none>
+
+TIMING-18#5 Warning
+Missing input or output delay  
+An input delay is missing on sfp2_tx_abs relative to clock(s) nf_10g_interface_2/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/RXOUTCLK, xphy_refclk_p
+Related violations: <none>
+
+TIMING-18#6 Warning
+Missing input or output delay  
+An input delay is missing on sfp3_tx_abs relative to clock(s) nf_10g_interface_3/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/RXOUTCLK, xphy_refclk_p
+Related violations: <none>
+
+TIMING-18#7 Warning
+Missing input or output delay  
+An input delay is missing on uart_rxd relative to clock(s) sys_clk
+Related violations: <none>
+
+TIMING-18#8 Warning
+Missing input or output delay  
+An output delay is missing on i2c_reset[0] relative to clock(s) sys_clk
+Related violations: <none>
+
+TIMING-18#9 Warning
+Missing input or output delay  
+An output delay is missing on i2c_reset[1] relative to clock(s) sys_clk
+Related violations: <none>
+
+TIMING-18#10 Warning
+Missing input or output delay  
+An output delay is missing on sfp0_rx_led relative to clock(s) xphy_refclk_p
+Related violations: <none>
+
+TIMING-18#11 Warning
+Missing input or output delay  
+An output delay is missing on sfp0_tx_disable relative to clock(s) nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/TXOUTCLK
+Related violations: <none>
+
+TIMING-18#12 Warning
+Missing input or output delay  
+An output delay is missing on sfp0_tx_led relative to clock(s) xphy_refclk_p
+Related violations: <none>
+
+TIMING-18#13 Warning
+Missing input or output delay  
+An output delay is missing on sfp1_rx_led relative to clock(s) xphy_refclk_p
+Related violations: <none>
+
+TIMING-18#14 Warning
+Missing input or output delay  
+An output delay is missing on sfp1_tx_disable relative to clock(s) nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/TXOUTCLK
+Related violations: <none>
+
+TIMING-18#15 Warning
+Missing input or output delay  
+An output delay is missing on sfp1_tx_led relative to clock(s) xphy_refclk_p
+Related violations: <none>
+
+TIMING-18#16 Warning
+Missing input or output delay  
+An output delay is missing on sfp2_rx_led relative to clock(s) xphy_refclk_p
+Related violations: <none>
+
+TIMING-18#17 Warning
+Missing input or output delay  
+An output delay is missing on sfp2_tx_disable relative to clock(s) nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/TXOUTCLK
+Related violations: <none>
+
+TIMING-18#18 Warning
+Missing input or output delay  
+An output delay is missing on sfp2_tx_led relative to clock(s) xphy_refclk_p
+Related violations: <none>
+
+TIMING-18#19 Warning
+Missing input or output delay  
+An output delay is missing on sfp3_rx_led relative to clock(s) xphy_refclk_p
+Related violations: <none>
+
+TIMING-18#20 Warning
+Missing input or output delay  
+An output delay is missing on sfp3_tx_disable relative to clock(s) nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/TXOUTCLK
+Related violations: <none>
+
+TIMING-18#21 Warning
+Missing input or output delay  
+An output delay is missing on sfp3_tx_led relative to clock(s) xphy_refclk_p
+Related violations: <none>
+
+TIMING-18#22 Warning
+Missing input or output delay  
+An output delay is missing on uart_txd relative to clock(s) sys_clk
+Related violations: <none>
+
+TIMING-24#1 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 230 in the Timing Constraints window in Vivado IDE) between clocks sys_clk and clk_200 overrides a set_max_delay -datapath_only (position 362). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#2 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 230 in the Timing Constraints window in Vivado IDE) between clocks sys_clk and clk_200 overrides a set_max_delay -datapath_only (position 364). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#3 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 230 in the Timing Constraints window in Vivado IDE) between clocks sys_clk and clk_200 overrides a set_max_delay -datapath_only (position 370). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#4 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 242 in the Timing Constraints window in Vivado IDE) between clocks xphy_refclk_p and clk_200 overrides a set_max_delay -datapath_only (position 316). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#5 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 242 in the Timing Constraints window in Vivado IDE) between clocks xphy_refclk_p and clk_200 overrides a set_max_delay -datapath_only (position 322). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#6 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 242 in the Timing Constraints window in Vivado IDE) between clocks xphy_refclk_p and clk_200 overrides a set_max_delay -datapath_only (position 324). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#7 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 242 in the Timing Constraints window in Vivado IDE) between clocks xphy_refclk_p and clk_200 overrides a set_max_delay -datapath_only (position 328). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#8 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 242 in the Timing Constraints window in Vivado IDE) between clocks xphy_refclk_p and clk_200 overrides a set_max_delay -datapath_only (position 334). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#9 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 242 in the Timing Constraints window in Vivado IDE) between clocks xphy_refclk_p and clk_200 overrides a set_max_delay -datapath_only (position 336). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#10 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 242 in the Timing Constraints window in Vivado IDE) between clocks xphy_refclk_p and clk_200 overrides a set_max_delay -datapath_only (position 340). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#11 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 242 in the Timing Constraints window in Vivado IDE) between clocks xphy_refclk_p and clk_200 overrides a set_max_delay -datapath_only (position 346). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#12 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 242 in the Timing Constraints window in Vivado IDE) between clocks xphy_refclk_p and clk_200 overrides a set_max_delay -datapath_only (position 348). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#13 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 242 in the Timing Constraints window in Vivado IDE) between clocks xphy_refclk_p and clk_200 overrides a set_max_delay -datapath_only (position 352). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#14 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 242 in the Timing Constraints window in Vivado IDE) between clocks xphy_refclk_p and clk_200 overrides a set_max_delay -datapath_only (position 358). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#15 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 242 in the Timing Constraints window in Vivado IDE) between clocks xphy_refclk_p and clk_200 overrides a set_max_delay -datapath_only (position 360). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#16 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 243 in the Timing Constraints window in Vivado IDE) between clocks clk_200 and xphy_refclk_p overrides a set_max_delay -datapath_only (position 314). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#17 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 243 in the Timing Constraints window in Vivado IDE) between clocks clk_200 and xphy_refclk_p overrides a set_max_delay -datapath_only (position 318). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#18 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 243 in the Timing Constraints window in Vivado IDE) between clocks clk_200 and xphy_refclk_p overrides a set_max_delay -datapath_only (position 320). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#19 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 243 in the Timing Constraints window in Vivado IDE) between clocks clk_200 and xphy_refclk_p overrides a set_max_delay -datapath_only (position 326). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#20 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 243 in the Timing Constraints window in Vivado IDE) between clocks clk_200 and xphy_refclk_p overrides a set_max_delay -datapath_only (position 330). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#21 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 243 in the Timing Constraints window in Vivado IDE) between clocks clk_200 and xphy_refclk_p overrides a set_max_delay -datapath_only (position 332). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#22 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 243 in the Timing Constraints window in Vivado IDE) between clocks clk_200 and xphy_refclk_p overrides a set_max_delay -datapath_only (position 338). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#23 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 243 in the Timing Constraints window in Vivado IDE) between clocks clk_200 and xphy_refclk_p overrides a set_max_delay -datapath_only (position 342). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#24 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 243 in the Timing Constraints window in Vivado IDE) between clocks clk_200 and xphy_refclk_p overrides a set_max_delay -datapath_only (position 344). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#25 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 243 in the Timing Constraints window in Vivado IDE) between clocks clk_200 and xphy_refclk_p overrides a set_max_delay -datapath_only (position 350). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#26 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 243 in the Timing Constraints window in Vivado IDE) between clocks clk_200 and xphy_refclk_p overrides a set_max_delay -datapath_only (position 354). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#27 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 243 in the Timing Constraints window in Vivado IDE) between clocks clk_200 and xphy_refclk_p overrides a set_max_delay -datapath_only (position 356). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#28 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 246 in the Timing Constraints window in Vivado IDE) between clocks userclk1 and clk_200 overrides a set_max_delay -datapath_only (position 290). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#29 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 246 in the Timing Constraints window in Vivado IDE) between clocks userclk1 and clk_200 overrides a set_max_delay -datapath_only (position 296). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#30 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 246 in the Timing Constraints window in Vivado IDE) between clocks userclk1 and clk_200 overrides a set_max_delay -datapath_only (position 378). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#31 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 247 in the Timing Constraints window in Vivado IDE) between clocks clk_200 and userclk1 overrides a set_max_delay -datapath_only (position 292). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#32 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 247 in the Timing Constraints window in Vivado IDE) between clocks clk_200 and userclk1 overrides a set_max_delay -datapath_only (position 294). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#33 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 247 in the Timing Constraints window in Vivado IDE) between clocks clk_200 and userclk1 overrides a set_max_delay -datapath_only (position 372). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#34 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 247 in the Timing Constraints window in Vivado IDE) between clocks clk_200 and userclk1 overrides a set_max_delay -datapath_only (position 374). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#35 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 247 in the Timing Constraints window in Vivado IDE) between clocks clk_200 and userclk1 overrides a set_max_delay -datapath_only (position 380). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#36 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 248 in the Timing Constraints window in Vivado IDE) between clocks userclk1 and sys_clk overrides a set_max_delay -datapath_only (position 302). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#37 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 248 in the Timing Constraints window in Vivado IDE) between clocks userclk1 and sys_clk overrides a set_max_delay -datapath_only (position 306). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#38 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 248 in the Timing Constraints window in Vivado IDE) between clocks userclk1 and sys_clk overrides a set_max_delay -datapath_only (position 310). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#39 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 248 in the Timing Constraints window in Vivado IDE) between clocks userclk1 and sys_clk overrides a set_max_delay -datapath_only (position 312). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#40 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 249 in the Timing Constraints window in Vivado IDE) between clocks sys_clk and userclk1 overrides a set_max_delay -datapath_only (position 298). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#41 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 249 in the Timing Constraints window in Vivado IDE) between clocks sys_clk and userclk1 overrides a set_max_delay -datapath_only (position 300). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#42 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 249 in the Timing Constraints window in Vivado IDE) between clocks sys_clk and userclk1 overrides a set_max_delay -datapath_only (position 304). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#43 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 249 in the Timing Constraints window in Vivado IDE) between clocks sys_clk and userclk1 overrides a set_max_delay -datapath_only (position 308). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#44 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 254 in the Timing Constraints window in Vivado IDE) between clocks nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/RXOUTCLK and xphy_refclk_p overrides a set_max_delay -datapath_only (position 198). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#45 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 254 in the Timing Constraints window in Vivado IDE) between clocks nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/RXOUTCLK and xphy_refclk_p overrides a set_max_delay -datapath_only (position 205). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#46 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 254 in the Timing Constraints window in Vivado IDE) between clocks nf_10g_interface_1/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/RXOUTCLK and xphy_refclk_p overrides a set_max_delay -datapath_only (position 78). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#47 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 254 in the Timing Constraints window in Vivado IDE) between clocks nf_10g_interface_1/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/RXOUTCLK and xphy_refclk_p overrides a set_max_delay -datapath_only (position 85). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#48 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 254 in the Timing Constraints window in Vivado IDE) between clocks nf_10g_interface_2/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/RXOUTCLK and xphy_refclk_p overrides a set_max_delay -datapath_only (position 115). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#49 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 254 in the Timing Constraints window in Vivado IDE) between clocks nf_10g_interface_2/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/RXOUTCLK and xphy_refclk_p overrides a set_max_delay -datapath_only (position 122). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#50 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 254 in the Timing Constraints window in Vivado IDE) between clocks nf_10g_interface_3/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/RXOUTCLK and xphy_refclk_p overrides a set_max_delay -datapath_only (position 152). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#51 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 254 in the Timing Constraints window in Vivado IDE) between clocks nf_10g_interface_3/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/RXOUTCLK and xphy_refclk_p overrides a set_max_delay -datapath_only (position 159). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#52 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 255 in the Timing Constraints window in Vivado IDE) between clocks xphy_refclk_p and nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/RXOUTCLK overrides a set_max_delay -datapath_only (position 197). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#53 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 255 in the Timing Constraints window in Vivado IDE) between clocks xphy_refclk_p and nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/RXOUTCLK overrides a set_max_delay -datapath_only (position 199). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#54 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 255 in the Timing Constraints window in Vivado IDE) between clocks xphy_refclk_p and nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/RXOUTCLK overrides a set_max_delay -datapath_only (position 205). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#55 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 255 in the Timing Constraints window in Vivado IDE) between clocks xphy_refclk_p and nf_10g_interface_1/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/RXOUTCLK overrides a set_max_delay -datapath_only (position 77). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#56 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 255 in the Timing Constraints window in Vivado IDE) between clocks xphy_refclk_p and nf_10g_interface_1/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/RXOUTCLK overrides a set_max_delay -datapath_only (position 79). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#57 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 255 in the Timing Constraints window in Vivado IDE) between clocks xphy_refclk_p and nf_10g_interface_1/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/RXOUTCLK overrides a set_max_delay -datapath_only (position 85). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#58 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 255 in the Timing Constraints window in Vivado IDE) between clocks xphy_refclk_p and nf_10g_interface_2/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/RXOUTCLK overrides a set_max_delay -datapath_only (position 114). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#59 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 255 in the Timing Constraints window in Vivado IDE) between clocks xphy_refclk_p and nf_10g_interface_2/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/RXOUTCLK overrides a set_max_delay -datapath_only (position 116). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#60 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 255 in the Timing Constraints window in Vivado IDE) between clocks xphy_refclk_p and nf_10g_interface_2/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/RXOUTCLK overrides a set_max_delay -datapath_only (position 122). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#61 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 255 in the Timing Constraints window in Vivado IDE) between clocks xphy_refclk_p and nf_10g_interface_3/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/RXOUTCLK overrides a set_max_delay -datapath_only (position 151). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#62 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 255 in the Timing Constraints window in Vivado IDE) between clocks xphy_refclk_p and nf_10g_interface_3/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/RXOUTCLK overrides a set_max_delay -datapath_only (position 153). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#63 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 255 in the Timing Constraints window in Vivado IDE) between clocks xphy_refclk_p and nf_10g_interface_3/inst/nf_10g_interface_block_i/axi_10g_ethernet_i/inst/xpcs/inst/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/RXOUTCLK overrides a set_max_delay -datapath_only (position 159). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#64 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 256 in the Timing Constraints window in Vivado IDE) between clocks nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/TXOUTCLK and xphy_refclk_p overrides a set_max_delay -datapath_only (position 120). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#65 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 256 in the Timing Constraints window in Vivado IDE) between clocks nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/TXOUTCLK and xphy_refclk_p overrides a set_max_delay -datapath_only (position 157). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#66 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 256 in the Timing Constraints window in Vivado IDE) between clocks nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/TXOUTCLK and xphy_refclk_p overrides a set_max_delay -datapath_only (position 203). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#67 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 256 in the Timing Constraints window in Vivado IDE) between clocks nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/TXOUTCLK and xphy_refclk_p overrides a set_max_delay -datapath_only (position 83). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#68 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 257 in the Timing Constraints window in Vivado IDE) between clocks xphy_refclk_p and nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/TXOUTCLK overrides a set_max_delay -datapath_only (position 119). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#69 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 257 in the Timing Constraints window in Vivado IDE) between clocks xphy_refclk_p and nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/TXOUTCLK overrides a set_max_delay -datapath_only (position 122). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#70 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 257 in the Timing Constraints window in Vivado IDE) between clocks xphy_refclk_p and nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/TXOUTCLK overrides a set_max_delay -datapath_only (position 156). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#71 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 257 in the Timing Constraints window in Vivado IDE) between clocks xphy_refclk_p and nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/TXOUTCLK overrides a set_max_delay -datapath_only (position 159). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#72 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 257 in the Timing Constraints window in Vivado IDE) between clocks xphy_refclk_p and nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/TXOUTCLK overrides a set_max_delay -datapath_only (position 202). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#73 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 257 in the Timing Constraints window in Vivado IDE) between clocks xphy_refclk_p and nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/TXOUTCLK overrides a set_max_delay -datapath_only (position 205). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#74 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 257 in the Timing Constraints window in Vivado IDE) between clocks xphy_refclk_p and nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/TXOUTCLK overrides a set_max_delay -datapath_only (position 82). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-24#75 Warning
+Overridden Max delay datapath only  
+A set_clock_groups or a set_false path (see constraint position 257 in the Timing Constraints window in Vivado IDE) between clocks xphy_refclk_p and nf_10g_interface_0/inst/nf_10g_interface_shared_i/axi_10g_ethernet_i/inst/xpcs/inst/ten_gig_eth_pcs_pma_block_i/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/TXOUTCLK overrides a set_max_delay -datapath_only (position 85). It is not recommended to override a set_max_delay -datapath_only constraint. Replace the set_clock_groups or set_false_path between clocks with point-to-point set_false_path constraints
+Related violations: <none>
+
+TIMING-28#1 Warning
+Auto-derived clock referenced by a timing constraint  
+The auto-derived clock userclk1 is referenced by name inside timing constraint (see constraint position 246 in the Timing Constraint window in Vivado IDE). It is recommended to reference an auto-derived clock by the pin name attached to the clock: get_clocks -of_objects [get_pins control_sub_i/dma_sub/pcie3_7x_1/inst/gt_top_i/pipe_wrapper_i/pipe_clock_int.pipe_clock_i/mmcm_i/CLKOUT2]
+Related violations: <none>
+
+TIMING-28#2 Warning
+Auto-derived clock referenced by a timing constraint  
+The auto-derived clock userclk1 is referenced by name inside timing constraint (see constraint position 247 in the Timing Constraint window in Vivado IDE). It is recommended to reference an auto-derived clock by the pin name attached to the clock: get_clocks -of_objects [get_pins control_sub_i/dma_sub/pcie3_7x_1/inst/gt_top_i/pipe_wrapper_i/pipe_clock_int.pipe_clock_i/mmcm_i/CLKOUT2]
+Related violations: <none>
+
+TIMING-28#3 Warning
+Auto-derived clock referenced by a timing constraint  
+The auto-derived clock userclk1 is referenced by name inside timing constraint (see constraint position 248 in the Timing Constraint window in Vivado IDE). It is recommended to reference an auto-derived clock by the pin name attached to the clock: get_clocks -of_objects [get_pins control_sub_i/dma_sub/pcie3_7x_1/inst/gt_top_i/pipe_wrapper_i/pipe_clock_int.pipe_clock_i/mmcm_i/CLKOUT2]
+Related violations: <none>
+
+TIMING-28#4 Warning
+Auto-derived clock referenced by a timing constraint  
+The auto-derived clock userclk1 is referenced by name inside timing constraint (see constraint position 249 in the Timing Constraint window in Vivado IDE). It is recommended to reference an auto-derived clock by the pin name attached to the clock: get_clocks -of_objects [get_pins control_sub_i/dma_sub/pcie3_7x_1/inst/gt_top_i/pipe_wrapper_i/pipe_clock_int.pipe_clock_i/mmcm_i/CLKOUT2]
+Related violations: <none>
+
+TIMING-28#5 Warning
+Auto-derived clock referenced by a timing constraint  
+The auto-derived clock userclk1 is referenced by name inside timing constraint (see constraint position 252 in the Timing Constraint window in Vivado IDE). It is recommended to reference an auto-derived clock by the pin name attached to the clock: get_clocks -of_objects [get_pins control_sub_i/dma_sub/pcie3_7x_1/inst/gt_top_i/pipe_wrapper_i/pipe_clock_int.pipe_clock_i/mmcm_i/CLKOUT2]
+Related violations: <none>
+
+TIMING-28#6 Warning
+Auto-derived clock referenced by a timing constraint  
+The auto-derived clock userclk1 is referenced by name inside timing constraint (see constraint position 253 in the Timing Constraint window in Vivado IDE). It is recommended to reference an auto-derived clock by the pin name attached to the clock: get_clocks -of_objects [get_pins control_sub_i/dma_sub/pcie3_7x_1/inst/gt_top_i/pipe_wrapper_i/pipe_clock_int.pipe_clock_i/mmcm_i/CLKOUT2]
+Related violations: <none>
+
+XDCB-5#1 Warning
+Runtime inefficient way to find pin objects  
+The option 'objects : [get_pins -hier -filter name=~*IBUFDS_GTE2_inst/O]' of constraint 'create_clock' uses inefficient query to find pin objects (see constraint position '223' in the Timing Constraint window in Vivado IDE). To reduce runtime, it is recommended to get the pins through the cell objects. Please refer to Using Constraints Guide (Constraints Efficiency). An example of optimal query is: get_pins -filter {REF_PIN_NAME=~yy*} -of_objects [get_cells -hierarchical xx*].
+Current XDC: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/constraints/nf_sume_general.xdc (Line: 54)
+Related violations: <none>
+
+XDCB-5#2 Warning
+Runtime inefficient way to find pin objects  
+The option 'objects : [get_pins -hier -filter name=~*axi_clocking_i*clk_wiz_i/clk_out1]' of constraint 'create_clock' uses inefficient query to find pin objects (see constraint position '227' in the Timing Constraint window in Vivado IDE). To reduce runtime, it is recommended to get the pins through the cell objects. Please refer to Using Constraints Guide (Constraints Efficiency). An example of optimal query is: get_pins -filter {REF_PIN_NAME=~yy*} -of_objects [get_cells -hierarchical xx*].
+Current XDC: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/constraints/nf_sume_general.xdc (Line: 76)
+Related violations: <none>
+
+XDCB-5#3 Warning
+Runtime inefficient way to find pin objects  
+The option 'objects : [get_pins -hier -filter name=~*interface_0*gthe2_i/RXOUTCLK]' of constraint 'create_clock' uses inefficient query to find pin objects (see constraint position '234' in the Timing Constraint window in Vivado IDE). To reduce runtime, it is recommended to get the pins through the cell objects. Please refer to Using Constraints Guide (Constraints Efficiency). An example of optimal query is: get_pins -filter {REF_PIN_NAME=~yy*} -of_objects [get_cells -hierarchical xx*].
+Current XDC: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/constraints/nf_sume_10g.xdc (Line: 114)
+Related violations: <none>
+
+XDCB-5#4 Warning
+Runtime inefficient way to find pin objects  
+The option 'objects : [get_pins -hier -filter name=~*interface_0*gthe2_i/TXOUTCLK]' of constraint 'create_clock' uses inefficient query to find pin objects (see constraint position '235' in the Timing Constraint window in Vivado IDE). To reduce runtime, it is recommended to get the pins through the cell objects. Please refer to Using Constraints Guide (Constraints Efficiency). An example of optimal query is: get_pins -filter {REF_PIN_NAME=~yy*} -of_objects [get_cells -hierarchical xx*].
+Current XDC: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/constraints/nf_sume_10g.xdc (Line: 115)
+Related violations: <none>
+
+XDCB-5#5 Warning
+Runtime inefficient way to find pin objects  
+The option 'objects : [get_pins -hier -filter name=~*interface_1*gthe2_i/RXOUTCLK]' of constraint 'create_clock' uses inefficient query to find pin objects (see constraint position '236' in the Timing Constraint window in Vivado IDE). To reduce runtime, it is recommended to get the pins through the cell objects. Please refer to Using Constraints Guide (Constraints Efficiency). An example of optimal query is: get_pins -filter {REF_PIN_NAME=~yy*} -of_objects [get_cells -hierarchical xx*].
+Current XDC: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/constraints/nf_sume_10g.xdc (Line: 116)
+Related violations: <none>
+
+XDCB-5#6 Warning
+Runtime inefficient way to find pin objects  
+The option 'objects : [get_pins -hier -filter name=~*interface_1*gthe2_i/TXOUTCLK]' of constraint 'create_clock' uses inefficient query to find pin objects (see constraint position '237' in the Timing Constraint window in Vivado IDE). To reduce runtime, it is recommended to get the pins through the cell objects. Please refer to Using Constraints Guide (Constraints Efficiency). An example of optimal query is: get_pins -filter {REF_PIN_NAME=~yy*} -of_objects [get_cells -hierarchical xx*].
+Current XDC: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/constraints/nf_sume_10g.xdc (Line: 117)
+Related violations: <none>
+
+XDCB-5#7 Warning
+Runtime inefficient way to find pin objects  
+The option 'objects : [get_pins -hier -filter name=~*interface_2*gthe2_i/RXOUTCLK]' of constraint 'create_clock' uses inefficient query to find pin objects (see constraint position '238' in the Timing Constraint window in Vivado IDE). To reduce runtime, it is recommended to get the pins through the cell objects. Please refer to Using Constraints Guide (Constraints Efficiency). An example of optimal query is: get_pins -filter {REF_PIN_NAME=~yy*} -of_objects [get_cells -hierarchical xx*].
+Current XDC: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/constraints/nf_sume_10g.xdc (Line: 118)
+Related violations: <none>
+
+XDCB-5#8 Warning
+Runtime inefficient way to find pin objects  
+The option 'objects : [get_pins -hier -filter name=~*interface_2*gthe2_i/TXOUTCLK]' of constraint 'create_clock' uses inefficient query to find pin objects (see constraint position '239' in the Timing Constraint window in Vivado IDE). To reduce runtime, it is recommended to get the pins through the cell objects. Please refer to Using Constraints Guide (Constraints Efficiency). An example of optimal query is: get_pins -filter {REF_PIN_NAME=~yy*} -of_objects [get_cells -hierarchical xx*].
+Current XDC: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/constraints/nf_sume_10g.xdc (Line: 119)
+Related violations: <none>
+
+XDCB-5#9 Warning
+Runtime inefficient way to find pin objects  
+The option 'objects : [get_pins -hier -filter name=~*interface_3*gthe2_i/RXOUTCLK]' of constraint 'create_clock' uses inefficient query to find pin objects (see constraint position '240' in the Timing Constraint window in Vivado IDE). To reduce runtime, it is recommended to get the pins through the cell objects. Please refer to Using Constraints Guide (Constraints Efficiency). An example of optimal query is: get_pins -filter {REF_PIN_NAME=~yy*} -of_objects [get_cells -hierarchical xx*].
+Current XDC: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/constraints/nf_sume_10g.xdc (Line: 120)
+Related violations: <none>
+
+XDCB-5#10 Warning
+Runtime inefficient way to find pin objects  
+The option 'objects : [get_pins -hier -filter name=~*interface_3*gthe2_i/TXOUTCLK]' of constraint 'create_clock' uses inefficient query to find pin objects (see constraint position '241' in the Timing Constraint window in Vivado IDE). To reduce runtime, it is recommended to get the pins through the cell objects. Please refer to Using Constraints Guide (Constraints Efficiency). An example of optimal query is: get_pins -filter {REF_PIN_NAME=~yy*} -of_objects [get_cells -hierarchical xx*].
+Current XDC: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/constraints/nf_sume_10g.xdc (Line: 121)
+Related violations: <none>
+
+XDCC-1#1 Warning
+Scoped Clock constraint overwritten with the same name  
+A new clock constraint create_clock overrides a previous scoped clock constraint with the same name. It is not recommended to override a scoped (typically an IP) clock constraint and could result in unexpected behaviors.
+New: create_clock -period 3.103 [get_pins -hier -filter name=~*interface_0*gthe2_i/RXOUTCLK] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/constraints/nf_sume_10g.xdc (Line: 114))
+Previous: create_clock -period 3.103 [get_pins -of_objects [get_cells * -hierarchical -filter {REF_NAME=~ GTHE2_CHANNEL}] -filter {NAME =~ *RXOUTCLK}] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/project/simple_sume_switch.srcs/sources_1/ip/axi_10g_ethernet_shared/bd_0/ip/ip_1/synth/bd_a1aa_xpcs_0.xdc (Line: 49))
+Related violations: <none>
+
+XDCC-1#2 Warning
+Scoped Clock constraint overwritten with the same name  
+A new clock constraint create_clock overrides a previous scoped clock constraint with the same name. It is not recommended to override a scoped (typically an IP) clock constraint and could result in unexpected behaviors.
+New: create_clock -period 3.103 [get_pins -hier -filter name=~*interface_0*gthe2_i/TXOUTCLK] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/constraints/nf_sume_10g.xdc (Line: 115))
+Previous: create_clock -period 3.103 [get_pins -of_objects [get_cells * -hierarchical -filter {REF_NAME=~ GTHE2_CHANNEL}] -filter {NAME =~ *TXOUTCLK}] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/project/simple_sume_switch.srcs/sources_1/ip/axi_10g_ethernet_shared/bd_0/ip/ip_1/synth/bd_a1aa_xpcs_0.xdc (Line: 51))
+Related violations: <none>
+
+XDCC-1#3 Warning
+Scoped Clock constraint overwritten with the same name  
+A new clock constraint create_clock overrides a previous scoped clock constraint with the same name. It is not recommended to override a scoped (typically an IP) clock constraint and could result in unexpected behaviors.
+New: create_clock -period 3.103 [get_pins -hier -filter name=~*interface_1*gthe2_i/RXOUTCLK] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/constraints/nf_sume_10g.xdc (Line: 116))
+Previous: create_clock -period 3.103 [get_pins -of_objects [get_cells * -hierarchical -filter {REF_NAME=~ GTHE2_CHANNEL}] -filter {NAME =~ *RXOUTCLK}] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/project/simple_sume_switch.srcs/sources_1/ip/axi_10g_ethernet_nonshared/bd_0/ip/ip_1/synth/bd_7ad4_xpcs_0.xdc (Line: 48))
+Related violations: <none>
+
+XDCC-1#4 Warning
+Scoped Clock constraint overwritten with the same name  
+A new clock constraint create_clock overrides a previous scoped clock constraint with the same name. It is not recommended to override a scoped (typically an IP) clock constraint and could result in unexpected behaviors.
+New: create_clock -period 3.103 [get_pins -hier -filter name=~*interface_1*gthe2_i/TXOUTCLK] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/constraints/nf_sume_10g.xdc (Line: 117))
+Previous: create_clock -period 3.103 [get_pins -of_objects [get_cells * -hierarchical -filter {REF_NAME=~ GTHE2_CHANNEL}] -filter {NAME =~ *TXOUTCLK}] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/project/simple_sume_switch.srcs/sources_1/ip/axi_10g_ethernet_nonshared/bd_0/ip/ip_1/synth/bd_7ad4_xpcs_0.xdc (Line: 50))
+Related violations: <none>
+
+XDCC-1#5 Warning
+Scoped Clock constraint overwritten with the same name  
+A new clock constraint create_clock overrides a previous scoped clock constraint with the same name. It is not recommended to override a scoped (typically an IP) clock constraint and could result in unexpected behaviors.
+New: create_clock -period 3.103 [get_pins -hier -filter name=~*interface_2*gthe2_i/RXOUTCLK] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/constraints/nf_sume_10g.xdc (Line: 118))
+Previous: create_clock -period 3.103 [get_pins -of_objects [get_cells * -hierarchical -filter {REF_NAME=~ GTHE2_CHANNEL}] -filter {NAME =~ *RXOUTCLK}] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/project/simple_sume_switch.srcs/sources_1/ip/axi_10g_ethernet_nonshared/bd_0/ip/ip_1/synth/bd_7ad4_xpcs_0.xdc (Line: 48))
+Related violations: <none>
+
+XDCC-1#6 Warning
+Scoped Clock constraint overwritten with the same name  
+A new clock constraint create_clock overrides a previous scoped clock constraint with the same name. It is not recommended to override a scoped (typically an IP) clock constraint and could result in unexpected behaviors.
+New: create_clock -period 3.103 [get_pins -hier -filter name=~*interface_2*gthe2_i/TXOUTCLK] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/constraints/nf_sume_10g.xdc (Line: 119))
+Previous: create_clock -period 3.103 [get_pins -of_objects [get_cells * -hierarchical -filter {REF_NAME=~ GTHE2_CHANNEL}] -filter {NAME =~ *TXOUTCLK}] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/project/simple_sume_switch.srcs/sources_1/ip/axi_10g_ethernet_nonshared/bd_0/ip/ip_1/synth/bd_7ad4_xpcs_0.xdc (Line: 50))
+Related violations: <none>
+
+XDCC-1#7 Warning
+Scoped Clock constraint overwritten with the same name  
+A new clock constraint create_clock overrides a previous scoped clock constraint with the same name. It is not recommended to override a scoped (typically an IP) clock constraint and could result in unexpected behaviors.
+New: create_clock -period 3.103 [get_pins -hier -filter name=~*interface_3*gthe2_i/RXOUTCLK] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/constraints/nf_sume_10g.xdc (Line: 120))
+Previous: create_clock -period 3.103 [get_pins -of_objects [get_cells * -hierarchical -filter {REF_NAME=~ GTHE2_CHANNEL}] -filter {NAME =~ *RXOUTCLK}] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/project/simple_sume_switch.srcs/sources_1/ip/axi_10g_ethernet_nonshared/bd_0/ip/ip_1/synth/bd_7ad4_xpcs_0.xdc (Line: 48))
+Related violations: <none>
+
+XDCC-1#8 Warning
+Scoped Clock constraint overwritten with the same name  
+A new clock constraint create_clock overrides a previous scoped clock constraint with the same name. It is not recommended to override a scoped (typically an IP) clock constraint and could result in unexpected behaviors.
+New: create_clock -period 3.103 [get_pins -hier -filter name=~*interface_3*gthe2_i/TXOUTCLK] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/constraints/nf_sume_10g.xdc (Line: 121))
+Previous: create_clock -period 3.103 [get_pins -of_objects [get_cells * -hierarchical -filter {REF_NAME=~ GTHE2_CHANNEL}] -filter {NAME =~ *TXOUTCLK}] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/project/simple_sume_switch.srcs/sources_1/ip/axi_10g_ethernet_nonshared/bd_0/ip/ip_1/synth/bd_7ad4_xpcs_0.xdc (Line: 50))
+Related violations: <none>
+
+XDCC-1#9 Warning
+Scoped Clock constraint overwritten with the same name  
+A new clock constraint create_clock overrides a previous scoped clock constraint with the same name. It is not recommended to override a scoped (typically an IP) clock constraint and could result in unexpected behaviors.
+New: create_clock -period 6.400 [get_ports xphy_refclk_p] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/constraints/nf_sume_10g.xdc (Line: 92))
+Previous: create_clock -period 6.400 [get_ports xphy_refclk_p] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/project/simple_sume_switch.srcs/sources_1/ip/axi_10g_ethernet_shared/bd_0/ip/ip_1/synth/bd_a1aa_xpcs_0.xdc (Line: 47))
+Related violations: <none>
+
+XDCC-7#1 Warning
+Scoped Clock constraint overwritten on the same source  
+A new clock constraint create_clock overrides a previous scoped clock constraint defined on the same source. It is not recommended to override a scoped (typically an IP) clock constraint and could result in unexpected behaviors.
+New: create_clock -period 3.103 [get_pins -hier -filter name=~*interface_0*gthe2_i/RXOUTCLK] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/constraints/nf_sume_10g.xdc (Line: 114))
+Previous: create_clock -period 3.103 [get_pins -of_objects [get_cells * -hierarchical -filter {REF_NAME=~ GTHE2_CHANNEL}] -filter {NAME =~ *RXOUTCLK}] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/project/simple_sume_switch.srcs/sources_1/ip/axi_10g_ethernet_shared/bd_0/ip/ip_1/synth/bd_a1aa_xpcs_0.xdc (Line: 49))
+Related violations: <none>
+
+XDCC-7#2 Warning
+Scoped Clock constraint overwritten on the same source  
+A new clock constraint create_clock overrides a previous scoped clock constraint defined on the same source. It is not recommended to override a scoped (typically an IP) clock constraint and could result in unexpected behaviors.
+New: create_clock -period 3.103 [get_pins -hier -filter name=~*interface_0*gthe2_i/TXOUTCLK] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/constraints/nf_sume_10g.xdc (Line: 115))
+Previous: create_clock -period 3.103 [get_pins -of_objects [get_cells * -hierarchical -filter {REF_NAME=~ GTHE2_CHANNEL}] -filter {NAME =~ *TXOUTCLK}] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/project/simple_sume_switch.srcs/sources_1/ip/axi_10g_ethernet_shared/bd_0/ip/ip_1/synth/bd_a1aa_xpcs_0.xdc (Line: 51))
+Related violations: <none>
+
+XDCC-7#3 Warning
+Scoped Clock constraint overwritten on the same source  
+A new clock constraint create_clock overrides a previous scoped clock constraint defined on the same source. It is not recommended to override a scoped (typically an IP) clock constraint and could result in unexpected behaviors.
+New: create_clock -period 3.103 [get_pins -hier -filter name=~*interface_1*gthe2_i/RXOUTCLK] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/constraints/nf_sume_10g.xdc (Line: 116))
+Previous: create_clock -period 3.103 [get_pins -of_objects [get_cells * -hierarchical -filter {REF_NAME=~ GTHE2_CHANNEL}] -filter {NAME =~ *RXOUTCLK}] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/project/simple_sume_switch.srcs/sources_1/ip/axi_10g_ethernet_nonshared/bd_0/ip/ip_1/synth/bd_7ad4_xpcs_0.xdc (Line: 48))
+Related violations: <none>
+
+XDCC-7#4 Warning
+Scoped Clock constraint overwritten on the same source  
+A new clock constraint create_clock overrides a previous scoped clock constraint defined on the same source. It is not recommended to override a scoped (typically an IP) clock constraint and could result in unexpected behaviors.
+New: create_clock -period 3.103 [get_pins -hier -filter name=~*interface_1*gthe2_i/TXOUTCLK] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/constraints/nf_sume_10g.xdc (Line: 117))
+Previous: create_clock -period 3.103 [get_pins -of_objects [get_cells * -hierarchical -filter {REF_NAME=~ GTHE2_CHANNEL}] -filter {NAME =~ *TXOUTCLK}] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/project/simple_sume_switch.srcs/sources_1/ip/axi_10g_ethernet_nonshared/bd_0/ip/ip_1/synth/bd_7ad4_xpcs_0.xdc (Line: 50))
+Related violations: <none>
+
+XDCC-7#5 Warning
+Scoped Clock constraint overwritten on the same source  
+A new clock constraint create_clock overrides a previous scoped clock constraint defined on the same source. It is not recommended to override a scoped (typically an IP) clock constraint and could result in unexpected behaviors.
+New: create_clock -period 3.103 [get_pins -hier -filter name=~*interface_2*gthe2_i/RXOUTCLK] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/constraints/nf_sume_10g.xdc (Line: 118))
+Previous: create_clock -period 3.103 [get_pins -of_objects [get_cells * -hierarchical -filter {REF_NAME=~ GTHE2_CHANNEL}] -filter {NAME =~ *RXOUTCLK}] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/project/simple_sume_switch.srcs/sources_1/ip/axi_10g_ethernet_nonshared/bd_0/ip/ip_1/synth/bd_7ad4_xpcs_0.xdc (Line: 48))
+Related violations: <none>
+
+XDCC-7#6 Warning
+Scoped Clock constraint overwritten on the same source  
+A new clock constraint create_clock overrides a previous scoped clock constraint defined on the same source. It is not recommended to override a scoped (typically an IP) clock constraint and could result in unexpected behaviors.
+New: create_clock -period 3.103 [get_pins -hier -filter name=~*interface_2*gthe2_i/TXOUTCLK] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/constraints/nf_sume_10g.xdc (Line: 119))
+Previous: create_clock -period 3.103 [get_pins -of_objects [get_cells * -hierarchical -filter {REF_NAME=~ GTHE2_CHANNEL}] -filter {NAME =~ *TXOUTCLK}] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/project/simple_sume_switch.srcs/sources_1/ip/axi_10g_ethernet_nonshared/bd_0/ip/ip_1/synth/bd_7ad4_xpcs_0.xdc (Line: 50))
+Related violations: <none>
+
+XDCC-7#7 Warning
+Scoped Clock constraint overwritten on the same source  
+A new clock constraint create_clock overrides a previous scoped clock constraint defined on the same source. It is not recommended to override a scoped (typically an IP) clock constraint and could result in unexpected behaviors.
+New: create_clock -period 3.103 [get_pins -hier -filter name=~*interface_3*gthe2_i/RXOUTCLK] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/constraints/nf_sume_10g.xdc (Line: 120))
+Previous: create_clock -period 3.103 [get_pins -of_objects [get_cells * -hierarchical -filter {REF_NAME=~ GTHE2_CHANNEL}] -filter {NAME =~ *RXOUTCLK}] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/project/simple_sume_switch.srcs/sources_1/ip/axi_10g_ethernet_nonshared/bd_0/ip/ip_1/synth/bd_7ad4_xpcs_0.xdc (Line: 48))
+Related violations: <none>
+
+XDCC-7#8 Warning
+Scoped Clock constraint overwritten on the same source  
+A new clock constraint create_clock overrides a previous scoped clock constraint defined on the same source. It is not recommended to override a scoped (typically an IP) clock constraint and could result in unexpected behaviors.
+New: create_clock -period 3.103 [get_pins -hier -filter name=~*interface_3*gthe2_i/TXOUTCLK] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/constraints/nf_sume_10g.xdc (Line: 121))
+Previous: create_clock -period 3.103 [get_pins -of_objects [get_cells * -hierarchical -filter {REF_NAME=~ GTHE2_CHANNEL}] -filter {NAME =~ *TXOUTCLK}] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/project/simple_sume_switch.srcs/sources_1/ip/axi_10g_ethernet_nonshared/bd_0/ip/ip_1/synth/bd_7ad4_xpcs_0.xdc (Line: 50))
+Related violations: <none>
+
+XDCC-7#9 Warning
+Scoped Clock constraint overwritten on the same source  
+A new clock constraint create_clock overrides a previous scoped clock constraint defined on the same source. It is not recommended to override a scoped (typically an IP) clock constraint and could result in unexpected behaviors.
+New: create_clock -period 6.400 [get_ports xphy_refclk_p] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/constraints/nf_sume_10g.xdc (Line: 92))
+Previous: create_clock -period 6.400 [get_ports xphy_refclk_p] (Source: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/project/simple_sume_switch.srcs/sources_1/ip/axi_10g_ethernet_shared/bd_0/ip/ip_1/synth/bd_a1aa_xpcs_0.xdc (Line: 47))
+Related violations: <none>
+
+

@@ -1,0 +1,281 @@
+
+struct sume_metadata_t {
+  dma_q_size : 16,
+  nf3_q_size : 16,
+  nf2_q_size : 16,
+  nf1_q_size : 16,
+  nf0_q_size : 16,
+  send_dig_to_cpu : 8,
+  drop : 8,
+  dst_port : 8,
+  src_port : 8,
+  pkt_len : 16 }
+struct ethernet_t {
+  isValid : 1,
+  dstAddr : 48,
+  srcAddr : 48,
+  etherType : 16 }
+struct headers {
+  ethernet : ethernet_t }
+struct user_metadata_t {
+  unused : 8 }
+struct digest_data_t {
+  unused : 256 }
+class digest_data_t_0::Tuple(out) {
+  struct {
+    unused : 256 } }
+class sume_metadata_t_0::Tuple(inout) {
+  struct {
+    dma_q_size : 16,
+    nf3_q_size : 16,
+    nf2_q_size : 16,
+    nf1_q_size : 16,
+    nf0_q_size : 16,
+    send_dig_to_cpu : 8,
+    drop : 8,
+    dst_port : 8,
+    src_port : 8,
+    pkt_len : 16 } }
+class MyParser_t::ParsingEngine(16384,2,start) {
+  class hdr_t::Tuple(out) {
+    struct {
+      ethernet : ethernet_t } }
+  class user_metadata_t_0::Tuple(out) {
+    struct {
+      unused : 8 } }
+  class digest_data_t_0::Tuple(out) {
+    struct {
+      unused : 256 } }
+  class sume_metadata_t_0::Tuple(inout) {
+    struct {
+      dma_q_size : 16,
+      nf3_q_size : 16,
+      nf2_q_size : 16,
+      nf1_q_size : 16,
+      nf0_q_size : 16,
+      send_dig_to_cpu : 8,
+      drop : 8,
+      dst_port : 8,
+      src_port : 8,
+      pkt_len : 16 } }
+  class MyParser_extracts_t::Tuple(out) {
+    struct {
+      size : 32 } }
+  hdr_t hdr;
+  user_metadata_t_0 user_metadata;
+  digest_data_t_0 digest_data;
+  sume_metadata_t_0 sume_metadata;
+  MyParser_extracts_t MyParser_extracts;
+  class start::Section(1) {
+    struct {
+      dstAddr_0 : 48,
+      srcAddr_0 : 48,
+      etherType_0 : 16 }
+    method update = {
+      hdr.ethernet.isValid = 1,
+      hdr.ethernet.dstAddr = dstAddr_0,
+      hdr.ethernet.srcAddr = srcAddr_0,
+      hdr.ethernet.etherType = etherType_0,
+      MyParser_extracts.size = (MyParser_extracts.size + 112),
+      user_metadata.unused = 0,
+      digest_data.unused = 0 }
+    method move_to_section = accept;
+    method increment_offset = 112; }
+  class accept::Section(2) {
+    method move_to_section = done(0);
+    method increment_offset = 0; }
+  class reject::Section {
+    method move_to_section = done(0);
+    method increment_offset = 0; } }
+struct mac_forward_0_cp {
+  port : 8 }
+class MyIngress_lvl_t::TupleEngine(1,setup) {
+  class digest_data_t_1::Tuple(inout) {
+    struct {
+      unused : 256 } }
+  class hdr_t_0::Tuple(inout) {
+    struct {
+      ethernet : ethernet_t } }
+  class local_state_t::Tuple(out) {
+    struct {
+      id : 16 } }
+  class sume_metadata_t_1::Tuple(inout) {
+    struct {
+      dma_q_size : 16,
+      nf3_q_size : 16,
+      nf2_q_size : 16,
+      nf1_q_size : 16,
+      nf0_q_size : 16,
+      send_dig_to_cpu : 8,
+      drop : 8,
+      dst_port : 8,
+      src_port : 8,
+      pkt_len : 16 } }
+  class user_metadata_t_1::Tuple(inout) {
+    struct {
+      unused : 8 } }
+  class mac_exact_req_t::Tuple(out) {
+    struct {
+      lookup_request_key : 48 } }
+  digest_data_t_1 digest_data;
+  hdr_t_0 hdr;
+  local_state_t local_state;
+  sume_metadata_t_1 sume_metadata;
+  user_metadata_t_1 user_metadata;
+  mac_exact_req_t mac_exact_req;
+  class setup::Section(1) {
+    method update = {
+      mac_exact_req.lookup_request_key = hdr.ethernet.dstAddr }
+    method move_to_section = done(0);
+    method increment_offset = 0; } }
+class mac_exact_t::LookupEngine(EM,64,48,10,1,0) {
+  class mac_exact_req_t::Tuple(in) {
+    struct {
+      lookup_request_key : 48 } }
+  class mac_exact_resp_t::Tuple(out) {
+    struct {
+      hit : 1,
+      action_run : 2,
+      mac_forward_0 : mac_forward_0_cp } }
+  mac_exact_req_t request;
+  mac_exact_resp_t response;
+  method send_request = { key = request }
+  method receive_response = { response = value } }
+class MyIngress_lvl_0_t::TupleEngine(3,mac_exact_sec) {
+  class digest_data_t_1::Tuple(inout) {
+    struct {
+      unused : 256 } }
+  class hdr_t_0::Tuple(inout) {
+    struct {
+      ethernet : ethernet_t } }
+  class local_state_t::Tuple(in) {
+    struct {
+      id : 16 } }
+  class sume_metadata_t_1::Tuple(inout) {
+    struct {
+      dma_q_size : 16,
+      nf3_q_size : 16,
+      nf2_q_size : 16,
+      nf1_q_size : 16,
+      nf0_q_size : 16,
+      send_dig_to_cpu : 8,
+      drop : 8,
+      dst_port : 8,
+      src_port : 8,
+      pkt_len : 16 } }
+  class user_metadata_t_1::Tuple(inout) {
+    struct {
+      unused : 8 } }
+  class mac_exact_resp_t::Tuple(in) {
+    struct {
+      hit : 1,
+      action_run : 2,
+      mac_forward_0 : mac_forward_0_cp } }
+  digest_data_t_1 digest_data;
+  hdr_t_0 hdr;
+  local_state_t local_state;
+  sume_metadata_t_1 sume_metadata;
+  user_metadata_t_1 user_metadata;
+  mac_exact_resp_t mac_exact_resp;
+  class NoAction_0_sec::Section(2) {
+    method move_to_section = sink;
+    method increment_offset = 0; }
+  class mac_exact_sec::Section(1) {
+    map action_select {
+      (1, mac_forward_0_sec),
+      (2, NoAction_0_sec),
+      NoAction_0_sec }
+    method move_to_section = if ((mac_exact_resp.hit == 1)) action_select(mac_exact_resp.action_run) else NoAction_0_sec;
+    method increment_offset = 0; }
+  class mac_forward_0_sec::Section(2) {
+    method update = {
+      sume_metadata.dst_port = mac_exact_resp.mac_forward_0.port }
+    method move_to_section = sink;
+    method increment_offset = 0; }
+  class sink::Section(3) {
+    method move_to_section = done(0);
+    method increment_offset = 0; } }
+class MyDeparser_t::EditingEngine(16384,3,extract_headers_sec) {
+  class hdr_t_1::Tuple(in) {
+    struct {
+      ethernet : ethernet_t } }
+  class user_metadata_t_2::Tuple(in) {
+    struct {
+      unused : 8 } }
+  class digest_data_t_2::Tuple(inout) {
+    struct {
+      unused : 256 } }
+  class sume_metadata_t_2::Tuple(inout) {
+    struct {
+      dma_q_size : 16,
+      nf3_q_size : 16,
+      nf2_q_size : 16,
+      nf1_q_size : 16,
+      nf0_q_size : 16,
+      send_dig_to_cpu : 8,
+      drop : 8,
+      dst_port : 8,
+      src_port : 8,
+      pkt_len : 16 } }
+  class MyDeparser_extracts_t::Tuple(in) {
+    struct {
+      size : 32 } }
+  hdr_t_1 hdr;
+  user_metadata_t_2 user_metadata;
+  digest_data_t_2 digest_data;
+  sume_metadata_t_2 sume_metadata;
+  MyDeparser_extracts_t MyDeparser_extracts;
+  class act_sec::Section(2) {
+    method move_to_section = emit_0;
+    method increment_offset = 0; }
+  class emit_0::Section(3) {
+    struct {
+      dstAddr : 48,
+      srcAddr : 48,
+      etherType : 16 }
+    method insert = if (hdr.ethernet.isValid) 112 else 0;
+    method update = {
+      dstAddr = hdr.ethernet.dstAddr,
+      srcAddr = hdr.ethernet.srcAddr,
+      etherType = hdr.ethernet.etherType }
+    method move_to_section = done(0);
+    method increment_offset = 0; }
+  class extract_headers_sec::Section(1) {
+    method remove = MyDeparser_extracts.size;
+    method move_to_section = act_sec;
+    method increment_offset = 0; } }
+class Packet_input::Packet(in) {}
+class Packet_output::Packet(out) {}
+class SimpleSumeSwitch::System {
+  digest_data_t_0 digest_data;
+  sume_metadata_t_0 sume_metadata;
+  MyParser_t MyParser;
+  MyIngress_lvl_t MyIngress_lvl;
+  mac_exact_t mac_exact;
+  MyIngress_lvl_0_t MyIngress_lvl_0;
+  MyDeparser_t MyDeparser;
+  Packet_input packet_in;
+  Packet_output packet_out;
+  method connect = {
+    MyIngress_lvl_0.digest_data = MyIngress_lvl.digest_data,
+    MyIngress_lvl_0.hdr = MyIngress_lvl.hdr,
+    MyIngress_lvl_0.local_state = MyIngress_lvl.local_state,
+    MyIngress_lvl_0.sume_metadata = MyIngress_lvl.sume_metadata,
+    MyIngress_lvl_0.user_metadata = MyIngress_lvl.user_metadata,
+    mac_exact.request = MyIngress_lvl.mac_exact_req,
+    MyIngress_lvl_0.mac_exact_resp = mac_exact.response,
+    MyIngress_lvl.hdr = MyParser.hdr,
+    MyDeparser.hdr = MyIngress_lvl_0.hdr,
+    MyIngress_lvl.user_metadata = MyParser.user_metadata,
+    MyDeparser.user_metadata = MyIngress_lvl_0.user_metadata,
+    MyIngress_lvl.digest_data = MyParser.digest_data,
+    MyDeparser.digest_data = MyIngress_lvl_0.digest_data,
+    digest_data = MyDeparser.digest_data,
+    MyParser.sume_metadata = sume_metadata,
+    MyIngress_lvl.sume_metadata = MyParser.sume_metadata,
+    MyDeparser.sume_metadata = MyIngress_lvl_0.sume_metadata,
+    sume_metadata = MyDeparser.sume_metadata,
+    MyParser.packet_in = packet_in,
+    MyDeparser.packet_in = MyParser.packet_out,
+    packet_out = MyDeparser.packet_out,
+    MyDeparser.MyDeparser_extracts = MyParser.MyParser_extracts } }

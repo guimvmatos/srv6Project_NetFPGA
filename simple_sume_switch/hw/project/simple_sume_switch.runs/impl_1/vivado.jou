@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2018.2 (64-bit)
+# SW Build 2258646 on Thu Jun 14 20:02:38 MDT 2018
+# IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
+# Start of session at: Fri Nov  6 01:30:23 2020
+# Process ID: 9399
+# Current directory: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/project/simple_sume_switch.runs/impl_1
+# Command line: vivado -log top.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source top.tcl -notrace
+# Log file: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/project/simple_sume_switch.runs/impl_1/top.vdi
+# Journal file: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/project/simple_sume_switch.runs/impl_1/vivado.jou
+#-----------------------------------------------------------
+source top.tcl -notrace

@@ -1,0 +1,15 @@
+#-----------------------------------------------------------
+# Vivado v2018.2 (64-bit)
+# SW Build 2258646 on Thu Jun 14 20:02:38 MDT 2018
+# IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
+# Start of session at: Thu Nov  5 22:36:04 2020
+# Process ID: 1610
+# Current directory: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/project/simple_sume_switch.runs/control_sub_m06_data_fifo_0_synth_1
+# Command line: vivado -log control_sub_m06_data_fifo_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source control_sub_m06_data_fifo_0.tcl
+# Log file: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/project/simple_sume_switch.runs/control_sub_m06_data_fifo_0_synth_1/control_sub_m06_data_fifo_0.vds
+# Journal file: /home/netfpga/projects/P4-NetFPGA/contrib-projects/sume-sdnet-switch/projects/srv6Project/simple_sume_switch/hw/project/simple_sume_switch.runs/control_sub_m06_data_fifo_0_synth_1/vivado.jou
+#-----------------------------------------------------------
+source control_sub_m06_data_fifo_0.tcl -notrace
+create_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:13 . Memory (MB): peak = 1235.453 ; gain = 59.016 ; free physical = 24741 ; free virtual = 29755
+INFO: [IP_Flow 19-4838] Using cached IP synthesis design for IP control_sub_m06_data_fifo_0, cache-ID = 9278bfe6c99dbe18.
+INFO: [Common 17-206] Exiting Vivado at Thu Nov  5 22:37:18 2020...
