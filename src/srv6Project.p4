@@ -81,16 +81,16 @@ control MyIngress(inout headers hdr,
                  inout digest_data_t digest_data,
                  inout sume_metadata_t sume_metadata) {
 
-    action mac_forward(port_t port){
+    action ipv6_forward(port_t port){
         sume_metadata.dst_port = port;
     }
 
-    table mac_exact{
+    table ipv6_exact{
         key = {
-            hdr.ethernet.dstAddr:   exact;
+            hdr.ipv6_outer.dst_addr:   exact;
         }
         actions = {
-            mac_forward;
+            ipv6_forward;
             NoAction;
         }
         size = 64;
@@ -98,7 +98,7 @@ control MyIngress(inout headers hdr,
     }
 
     apply{
-    mac_exact.apply();
+    ipv6_exact.apply();
     }
 }
 
