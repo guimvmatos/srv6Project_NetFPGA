@@ -16,7 +16,9 @@
 const bit<16> TYPE_IPV6 = 0x86dd;
 
 /* for IPv6 header */
-const bit<8> TYPE_UDP = 17; 
+const bit<8> TYPE_TCP = 6;
+const bit<8> TYPE_UDP = 17;
+const bit<8> TYPE_SRV6 = 43;
 
 /* for UDP header */
 const bit<16> TYPE_GTP = 2152;
@@ -154,14 +156,20 @@ parser MyParser(packet_in packet,
     state parse_ipv6_outer {
         packet.extract(hdr.ipv6_outer);
         transition select (hdr.ipv6_outer.next_hdr) {
+            TYPE_SRV6: parse_srv6;
             TYPE_UDP: parse_udp;
             /*default: accept; LIBERAR DEPOIS DE CONFIRAMR PARSER ATÉ O FIM */
        }
     }
 
+    state parse_srv6 {
+        packet.extract(hdr.srv6);
+        transition accept;
+    }
+
     state parse_udp {
         packet.extract(hdr.udp);
-        transition select(hdr.udp.dport){
+        transition select(hdr.udp.dport) {
             TYPE_GTP: parse_gtp;
         }
     }
@@ -169,6 +177,7 @@ parser MyParser(packet_in packet,
     state parse_gtp{
         packet.extract(hdr.gtp);
         transition select(hdr.gtp.extension_header_flag_id){
+            /*0 : parse_ipv6_inner;LIBERAR DEPOIS DE CONFIRMAR PARSER ATÉ O FIM */
             1 : parse_gtp_ext;
         }
     }
@@ -176,12 +185,31 @@ parser MyParser(packet_in packet,
     state parse_gtp_ext{
     	packet.extract(hdr.gtp_ext);
     	transition select(hdr.gtp_ext.next_extension){
-		pdu_container: parse_pdu_container; 
+		    pdu_container: parse_pdu_container; 
     	}
     }
 
     state parse_pdu_container{
     	packet.extract(hdr.pdu_container);
+    	transition parse_ipv6_inner;
+    }
+
+    state parse_ipv6_inner {
+    	packet.extract(hdr.ipv6_inner);
+    	transition select(hdr.ipv6_inner.next_hdr){
+    		TYPE_UDP: parse_udp_inner;
+    		TYPE_TCP: parse_tcp_inner;
+    		/*default: accept; LIBERAR DEPOIS DE CONFIRAMR PARSER ATÉ O FIM */
+    	}
+    }
+
+    state parse_udp_inner{
+    	packet.extract(hdr.udp_inner);
+    	transition accept;
+    }
+
+    state parse_tcp_inner{
+    	packet.extract(hdr.tcp_inner);
     	transition accept;
     }
 }
@@ -201,7 +229,7 @@ control MyIngress(inout headers hdr,
         hdr.ethernet.dstAddr = dstAddr;
     }
     
-    table ipv6_exact{
+    table ipv6_outer_lpm{
         key = {
             hdr.ipv6_outer.dst_addr:   exact;
         }
@@ -242,7 +270,6 @@ control MyDeparser(packet_out packet,
         packet.emit(hdr.ipv6_inner);
         packet.emit(hdr.tcp_inner);
         packet.emit(hdr.udp_inner);
- 
     }
 }   
 
