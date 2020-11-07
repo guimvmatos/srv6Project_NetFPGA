@@ -106,12 +106,12 @@ pktCnt = 0
 
 def pkt_send():
     global pktCnt
-    pkt = Ether(src=MAC1, dst=MAC2) / IPv6(src="fc00::1",dst="fc00::2") / UDP()
+    pkt = Ether(src=MAC1, dst=MAC2) / IPv6(src="fc00::1",dst="fc00::2") / UDP (sport=64515, dport=2152 ) / GTP_U_Header(TEID=32, Reserved=0)
     pkt.show2()
     pkt = pad_pkt(pkt, 64)
     applyPkt(pkt, 'nf0', pktCnt)
     pktCnt += 1
-    pkt = Ether(src=MAC2, dst=MAC2) / IPv6(src="fc00::1",dst="fc00::2") / UDP()
+    pkt = Ether(src=MAC2, dst=MAC2) / IPv6(src="fc00::1",dst="fc00::2") / UDP (sport=64515, dport=2152 ) / GTP_U_Header(TEID=32, Reserved=0)
     pkt.show2()
     pkt = pad_pkt(pkt, 64)
     expPkt(pkt, 'nf1')

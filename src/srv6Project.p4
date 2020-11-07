@@ -18,6 +18,9 @@ const bit<16> TYPE_IPV6 = 0x86dd;
 /* for IPv6 header */
 const bit<8> TYPE_UDP = 17; 
 
+/* for UDP header */
+const bit<16> TYPE_GTP = 2152;
+
 typedef bit<48> macAddr_t;
 typedef bit<128> ip6Addr_t;
 
@@ -38,6 +41,14 @@ header ipv6_t {
     bit<128> src_addr;
     bit<128> dst_addr;
 }
+
+header udp_t {
+    bit<16> sport;
+    bit<16> dport;
+    bit<16> len;
+    bit<16> checksum;
+}
+
 header gtp_t {
     bit<3>  version_field_id;
     bit<1>  proto_type_id;
@@ -50,17 +61,11 @@ header gtp_t {
     bit<32> teid;
 }
 
-header udp_t {
-    bit<16> sport;
-    bit<16> dport;
-    bit<16> len;
-    bit<16> checksum;
-}
-
 struct headers {
     ethernet_t   ethernet;
     ipv6_t       ipv6_outer;  
     udp_t        udp;
+    gtp_t        gtp;
 }
 
 struct user_metadata_t {
@@ -104,6 +109,13 @@ parser MyParser(packet_in packet,
 
     state parse_udp {
         packet.extract(hdr.udp);
+        transition select(hdr.udp.dport){
+            TYPE_GTP: parse_gtp;
+        }
+    }
+
+    state parse_gtp{
+        packet.extract(hdr.gtp);
         transition accept;
     }
 }
@@ -154,6 +166,7 @@ control MyDeparser(packet_out packet,
         packet.emit(hdr.ethernet);
         packet.emit(hdr.ipv6_outer);
         packet.emit(hdr.udp);
+        packet.emit(hdr.gtp);
  
     }
 }   
