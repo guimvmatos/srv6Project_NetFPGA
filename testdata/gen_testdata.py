@@ -110,7 +110,7 @@ def pkt_send():
     pkt = pad_pkt(pkt, 64)
     applyPkt(pkt, 'nf0', pktCnt)
     pktCnt += 1
-    pkt2 = Ether(dst=MAC1, src=MAC2) / IPv6(src="fc00::1",dst="fc00::2") / UDP()
+    pkt2 = Ether(src=MAC2, dst=MAC2) / IPv6(src="fc00::1",dst="fc00::2") / UDP()
     expPkt(pkt2, 'nf1')
 
 for i in range(5):
