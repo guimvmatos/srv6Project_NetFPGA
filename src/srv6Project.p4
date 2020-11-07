@@ -90,9 +90,25 @@ header pdu_container_t {
 	bit<8> padding; 
 }
 
+header srv6_t {
+    bit<8> next_hdr;
+    bit<8> hdr_ext_len;
+    bit<8> routing_type;
+    bit<8> segment_left;
+    bit<8> last_entry;
+    bit<8> flags;
+    bit<16> tag;
+}
+
+header srv6_list_t {
+    ip6Addr_t segment_id;
+}  
+
 struct headers {
     ethernet_t   ethernet;
     ipv6_t       ipv6_outer;  
+    srv6_t       srv6;
+    srv6_list_t[MAX_HOPS]   srv6_list;
     udp_t        udp;
     gtp_t        gtp;
     gtp_ext_t    gtp_ext;
