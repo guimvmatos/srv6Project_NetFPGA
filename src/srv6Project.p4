@@ -96,7 +96,7 @@ parser MyParser(packet_in packet,
 
     state parse_ipv6_outer {
         packet.extract(hdr.ipv6_outer);
-        transition select (hdt.ipv6_outer.next_hdr) {
+        transition select (hdr.ipv6_outer.next_hdr) {
             TYPE_UDP: parse_udp;
             default: accept;
        }
