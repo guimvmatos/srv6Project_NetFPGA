@@ -100,7 +100,7 @@ header srv6_t {
     bit<16> tag;
 }
 
-header srv6_list_t {
+header srv6_sid_t {
     ip6Addr_t segment_id;
 }  
 
@@ -108,7 +108,9 @@ struct headers {
     ethernet_t   ethernet;
     ipv6_t       ipv6_outer;  
     srv6_t       srv6;
-    srv6_list_t[4]   srv6_list;
+    srv6_sid_t   srv6_sid1;
+    srv6_sid_t   srv6_sid2;
+    srv6_sid_t   srv6_sid3;
     udp_t        udp;
     gtp_t        gtp;
     gtp_ext_t    gtp_ext;
@@ -229,6 +231,10 @@ control MyDeparser(packet_out packet,
     apply {
         packet.emit(hdr.ethernet);
         packet.emit(hdr.ipv6_outer);
+        packet.emit(hdr.srv6);
+        packet.emit(hdr.srv6_sid1);
+        packet.emit(hdr.srv6_sid2);
+        packet.emit(hdr.srv6_sid3);
         packet.emit(hdr.udp);
         packet.emit(hdr.gtp);
         packet.emit(hdr.gtp_ext);
