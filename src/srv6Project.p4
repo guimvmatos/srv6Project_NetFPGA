@@ -12,8 +12,11 @@
 /*************************************************************************
 *********************** H E A D E R S  ***********************************
 *************************************************************************/
-/* will be in Ethernet header */
+/* for Ethernet header */
 const bit<16> TYPE_IPV6 = 0x86dd;
+
+/* for IPv6 header */
+const bit<8> TYPE_UDP = 17; 
 
 typedef bit<48> macAddr_t;
 typedef bit<128> ip6Addr_t;
@@ -93,6 +96,14 @@ parser MyParser(packet_in packet,
 
     state parse_ipv6_outer {
         packet.extract(hdr.ipv6_outer);
+        transition select (hdt.ipv6_outer.next_hdr) {
+            TYPE_UDP: parse_udp;
+            default: accept;
+       }
+    }
+
+    state parse_udp {
+        packet.extract(hdr.udp);
         transition accept;
     }
 }
@@ -142,6 +153,7 @@ control MyDeparser(packet_out packet,
     apply {
         packet.emit(hdr.ethernet);
         packet.emit(hdr.ipv6_outer);
+        packet.emit(hdt.udp);
  
     }
 }   
