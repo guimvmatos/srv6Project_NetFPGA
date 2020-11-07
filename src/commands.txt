@@ -27,7 +27,7 @@
 // @NETFPGA_LICENSE_HEADER_END@
 //
 
-table_cam_add_entry ipv6_exact ipv6_forward 0xfc000000000000000000000000000001 => 0b00000001
-table_cam_add_entry ipv6_exact ipv6_forward 0xfc000000000000000000000000000002 => 0b00000100
+table_cam_add_entry ipv6_exact ipv6_forward 0xfc000000000000000000000000000001 => 0x081111111108 0b00000001
+table_cam_add_entry ipv6_exact ipv6_forward 0xfc000000000000000000000000000002 => 0x082222222208 0b00000100
 table_cam_add_entry ipv6_exact ipv6_forward 0xfc000000000000000000000000000003 => 0b00010000
 table_cam_add_entry ipv6_exact ipv6_forward 0xfc000000000000000000000000000004 => 0b01000000

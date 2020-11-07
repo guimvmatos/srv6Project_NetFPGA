@@ -81,10 +81,12 @@ control MyIngress(inout headers hdr,
                  inout digest_data_t digest_data,
                  inout sume_metadata_t sume_metadata) {
 
-    action ipv6_forward(port_t port){
+    action ipv6_forward(macAddr_t dstAddr, port_t port) {
         sume_metadata.dst_port = port;
+        hdr.ethernet.srcAddr = hdr.ethernet.dstAddr;
+        hdr.ethernet.dstAddr = dstAddr;
     }
-
+    
     table ipv6_exact{
         key = {
             hdr.ipv6_outer.dst_addr:   exact;
