@@ -12,7 +12,7 @@
 const bit<16> TYPE_IPV6 = 0x86dd;
 
 typedef bit<48> macAddr_t;
-
+typedef bit<128> ip6Addr_t;
 header ethernet_t {
     macAddr_t dstAddr;
     macAddr_t srcAddr;
