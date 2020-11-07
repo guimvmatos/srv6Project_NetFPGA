@@ -242,7 +242,7 @@ control MyIngress(inout headers hdr,
     }
 
     apply{
-    ipv6_forwardxact.apply();
+    ipv6_outer_lpm.apply();
     }
 }
 
