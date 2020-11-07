@@ -44,10 +44,19 @@ input/output tuple 'digest_data'
 	unused 256-bit field @ [255:0]
 
 input/output tuple 'hdr'
-	ethernet_isValid 1-bit field @ [112:112]
-	ethernet_dstAddr 48-bit field @ [111:64]
-	ethernet_srcAddr 48-bit field @ [63:16]
-	ethernet_etherType 16-bit field @ [15:0]
+	ethernet_isValid 1-bit field @ [433:433]
+	ethernet_dstAddr 48-bit field @ [432:385]
+	ethernet_srcAddr 48-bit field @ [384:337]
+	ethernet_etherType 16-bit field @ [336:321]
+	ipv6_outer_isValid 1-bit field @ [320:320]
+	ipv6_outer_version 4-bit field @ [319:316]
+	ipv6_outer_traffic_class 8-bit field @ [315:308]
+	ipv6_outer_flow_label 20-bit field @ [307:288]
+	ipv6_outer_payload_len 16-bit field @ [287:272]
+	ipv6_outer_next_hdr 8-bit field @ [271:264]
+	ipv6_outer_hop_limit 8-bit field @ [263:256]
+	ipv6_outer_src_addr 128-bit field @ [255:128]
+	ipv6_outer_dst_addr 128-bit field @ [127:0]
 
 input tuple 'local_state'
 	id 16-bit field @ [15:0]
@@ -67,10 +76,11 @@ input/output tuple 'sume_metadata'
 input/output tuple 'user_metadata'
 	unused 8-bit field @ [7:0]
 
-input tuple 'mac_exact_resp'
-	hit 1-bit field @ [10:10]
-	action_run 2-bit field @ [9:8]
-	mac_forward_0_port 8-bit field @ [7:0]
+input tuple 'ipv6_exact_resp'
+	hit 1-bit field @ [58:58]
+	action_run 2-bit field @ [57:56]
+	ipv6_forward_0_dstAddr 48-bit field @ [55:8]
+	ipv6_forward_0_port 8-bit field @ [7:0]
 
 */
 
@@ -89,8 +99,8 @@ module MyIngress_lvl_0_t (
 	tuple_in_sume_metadata_DATA,
 	tuple_in_user_metadata_VALID,
 	tuple_in_user_metadata_DATA,
-	tuple_in_mac_exact_resp_VALID,
-	tuple_in_mac_exact_resp_DATA,
+	tuple_in_ipv6_exact_resp_VALID,
+	tuple_in_ipv6_exact_resp_DATA,
 	tuple_out_digest_data_VALID,
 	tuple_out_digest_data_DATA,
 	tuple_out_hdr_VALID,
@@ -106,19 +116,19 @@ input clk_line ;
 input tuple_in_digest_data_VALID ;
 input [255:0] tuple_in_digest_data_DATA ;
 input tuple_in_hdr_VALID /* unused */ ;
-input [112:0] tuple_in_hdr_DATA ;
+input [433:0] tuple_in_hdr_DATA ;
 input tuple_in_local_state_VALID /* unused */ ;
 input [15:0] tuple_in_local_state_DATA ;
 input tuple_in_sume_metadata_VALID /* unused */ ;
 input [127:0] tuple_in_sume_metadata_DATA ;
 input tuple_in_user_metadata_VALID /* unused */ ;
 input [7:0] tuple_in_user_metadata_DATA ;
-input tuple_in_mac_exact_resp_VALID /* unused */ ;
-input [10:0] tuple_in_mac_exact_resp_DATA ;
+input tuple_in_ipv6_exact_resp_VALID /* unused */ ;
+input [58:0] tuple_in_ipv6_exact_resp_DATA ;
 output tuple_out_digest_data_VALID ;
 output [255:0] tuple_out_digest_data_DATA ;
 output tuple_out_hdr_VALID ;
-output [112:0] tuple_out_hdr_DATA ;
+output [433:0] tuple_out_hdr_DATA ;
 output tuple_out_sume_metadata_VALID ;
 output [127:0] tuple_out_sume_metadata_DATA ;
 output tuple_out_user_metadata_VALID ;
@@ -128,18 +138,18 @@ wire [22:0] tuple_in_control_DATA ;
 wire tuple_in_valid ;
 reg [22:0] tuple_in_control_i ;
 wire [255:0] tuple_in_digest_data ;
-wire [112:0] tuple_in_hdr ;
+wire [433:0] tuple_in_hdr ;
 wire [15:0] tuple_in_local_state ;
 wire [127:0] tuple_in_sume_metadata ;
 wire [7:0] tuple_in_user_metadata ;
-wire [10:0] tuple_in_mac_exact_resp ;
+wire [58:0] tuple_in_ipv6_exact_resp ;
 wire tuple_out_valid ;
 wire tuple_out_digest_data_VALID ;
 wire [255:0] tuple_out_digest_data_DATA ;
 wire [255:0] tuple_out_digest_data ;
 wire tuple_out_hdr_VALID ;
-wire [112:0] tuple_out_hdr_DATA ;
-wire [112:0] tuple_out_hdr ;
+wire [433:0] tuple_out_hdr_DATA ;
+wire [433:0] tuple_out_hdr ;
 wire tuple_out_sume_metadata_VALID ;
 wire [127:0] tuple_out_sume_metadata_DATA ;
 wire [127:0] tuple_out_sume_metadata ;
@@ -168,7 +178,7 @@ assign tuple_in_sume_metadata = tuple_in_sume_metadata_DATA ;
 
 assign tuple_in_user_metadata = tuple_in_user_metadata_DATA ;
 
-assign tuple_in_mac_exact_resp = tuple_in_mac_exact_resp_DATA ;
+assign tuple_in_ipv6_exact_resp = tuple_in_ipv6_exact_resp_DATA ;
 
 assign tuple_out_digest_data_VALID = tuple_out_valid ;
 
@@ -204,7 +214,7 @@ MyIngress_lvl_0_t_inst
 	.TX_TUPLE_sume_metadata	( tuple_out_sume_metadata ),
 	.RX_TUPLE_user_metadata	( tuple_in_user_metadata ),
 	.TX_TUPLE_user_metadata	( tuple_out_user_metadata ),
-	.RX_TUPLE_mac_exact_resp	( tuple_in_mac_exact_resp ),
+	.RX_TUPLE_ipv6_exact_resp	( tuple_in_ipv6_exact_resp ),
 	.RX_PKT_RDY          	(  ),
 	.TX_PKT_RDY          	( 1'd1 ),
 	.RX_PKT_VLD          	( tuple_in_valid ),
@@ -225,6 +235,6 @@ MyIngress_lvl_0_t_inst
 endmodule
 
 // machine-generated file - do NOT modify by hand !
-// File created on 2020/11/05 15:51:55
+// File created on 2020/11/07 02:06:10
 // by Barista HDL generation library, version TRUNK @ 1007984
 

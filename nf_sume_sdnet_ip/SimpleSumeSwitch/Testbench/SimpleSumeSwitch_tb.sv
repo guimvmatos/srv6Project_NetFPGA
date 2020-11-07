@@ -36,9 +36,9 @@
 module SimpleSumeSwitch_tb;
 
 
-reg clk_lookup /* undriven */ ;
 reg clk_control /* undriven */ ;
 reg clk_line /* undriven */ ;
+reg clk_lookup /* undriven */ ;
 reg clk_line_rst /* undriven */ ;
 reg clk_lookup_rst /* undriven */ ;
 reg clk_control_rst /* undriven */ ;
@@ -214,12 +214,6 @@ end
 
 
 always begin 
-  #(6666 / 2) clk_lookup =  0; 
-  #(6666 / 2) clk_lookup =  1; 
-end
-
-
-always begin 
   #(10000 / 2) clk_control =  0; 
   #(10000 / 2) clk_control =  1; 
 end
@@ -228,6 +222,12 @@ end
 always begin 
   #(3333 / 2) clk_line =  0; 
   #(3333 / 2) clk_line =  1; 
+end
+
+
+always begin 
+  #(6666 / 2) clk_lookup =  0; 
+  #(6666 / 2) clk_lookup =  1; 
 end
 
 
@@ -345,7 +345,7 @@ endtask: axi4_lite_master_read_request_control
 
 
 ////////////// Update from file/////////////////
-task update_mac_exact_from_file(input string file_name);
+task update_ipv6_exact_from_file(input string file_name);
     integer fileid;
     integer count; 
     string  line; 
@@ -392,7 +392,7 @@ task update_mac_exact_from_file(input string file_name);
     for (int i=0;i <index;i++)  begin
         $display("CAM UPDATE %d: KEY(hex) = %s VALUE(hex) = %s",i,key[i],value[i]);
         CAM_WriteEntry (0, key[i], value[i], 0);    end
-endtask :  update_mac_exact_from_file
+endtask :  update_ipv6_exact_from_file
 
 
 
@@ -420,9 +420,9 @@ initial begin
     end_sim_after_check = 1;
     wait(internal_rst_done);
     #10000 
-    CAM_Init(0,6667,48,10,64,0);
+    CAM_Init(0,6667,128,58,64,0);
     CAM_EnableDevice(0);
-    update_mac_exact_from_file("mac_exact.tbl");
+    update_ipv6_exact_from_file("ipv6_exact.tbl");
     #1000 fw_done = 1;
 end
 
@@ -431,6 +431,6 @@ end
 endmodule
 
 // machine-generated file - do NOT modify by hand !
-// File created on 2020/11/05 15:52:03
+// File created on 2020/11/07 02:06:21
 // by Barista HDL generation library, version TRUNK @ 1007984
 

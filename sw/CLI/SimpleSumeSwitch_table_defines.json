@@ -1,1 +1,1 @@
-{"EM": {"mac_exact": {"key_width": "48", "max_depth": "64", "tableID": "0", "value_width": "10", "table_name": "mac_exact", "aging_width": "0", "clk_period": "6667", "base_address": "0x00"}}, "LPM": {}, "TCAM": {}}
+{"EM": {"ipv6_exact": {"key_width": "128", "max_depth": "64", "tableID": "0", "value_width": "58", "table_name": "ipv6_exact", "aging_width": "0", "clk_period": "6667", "base_address": "0x00"}}, "LPM": {}, "TCAM": {}}

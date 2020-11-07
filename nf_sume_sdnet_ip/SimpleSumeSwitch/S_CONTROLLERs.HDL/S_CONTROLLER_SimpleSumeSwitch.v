@@ -54,23 +54,23 @@ module S_CONTROLLER_SimpleSumeSwitch (
 	control_S_AXI_RDATA,
 	control_S_AXI_RRESP,
 	control_S_AXI_RVALID,
-	mac_exact_control_S_AXI_AWREADY,
-	mac_exact_control_S_AXI_WREADY,
-	mac_exact_control_S_AXI_BRESP,
-	mac_exact_control_S_AXI_BVALID,
-	mac_exact_control_S_AXI_ARREADY,
-	mac_exact_control_S_AXI_RDATA,
-	mac_exact_control_S_AXI_RRESP,
-	mac_exact_control_S_AXI_RVALID,
-	mac_exact_control_S_AXI_AWADDR,
-	mac_exact_control_S_AXI_AWVALID,
-	mac_exact_control_S_AXI_WDATA,
-	mac_exact_control_S_AXI_WSTRB,
-	mac_exact_control_S_AXI_WVALID,
-	mac_exact_control_S_AXI_BREADY,
-	mac_exact_control_S_AXI_ARADDR,
-	mac_exact_control_S_AXI_ARVALID,
-	mac_exact_control_S_AXI_RREADY
+	ipv6_exact_control_S_AXI_AWREADY,
+	ipv6_exact_control_S_AXI_WREADY,
+	ipv6_exact_control_S_AXI_BRESP,
+	ipv6_exact_control_S_AXI_BVALID,
+	ipv6_exact_control_S_AXI_ARREADY,
+	ipv6_exact_control_S_AXI_RDATA,
+	ipv6_exact_control_S_AXI_RRESP,
+	ipv6_exact_control_S_AXI_RVALID,
+	ipv6_exact_control_S_AXI_AWADDR,
+	ipv6_exact_control_S_AXI_AWVALID,
+	ipv6_exact_control_S_AXI_WDATA,
+	ipv6_exact_control_S_AXI_WSTRB,
+	ipv6_exact_control_S_AXI_WVALID,
+	ipv6_exact_control_S_AXI_BREADY,
+	ipv6_exact_control_S_AXI_ARADDR,
+	ipv6_exact_control_S_AXI_ARVALID,
+	ipv6_exact_control_S_AXI_RREADY
 );
 
 input clk_control /* unused */ ;
@@ -93,23 +93,23 @@ output control_S_AXI_ARREADY ;
 output [31:0] control_S_AXI_RDATA ;
 output [1:0] control_S_AXI_RRESP ;
 output control_S_AXI_RVALID ;
-input mac_exact_control_S_AXI_AWREADY ;
-input mac_exact_control_S_AXI_WREADY ;
-input [1:0] mac_exact_control_S_AXI_BRESP ;
-input mac_exact_control_S_AXI_BVALID ;
-input mac_exact_control_S_AXI_ARREADY ;
-input [31:0] mac_exact_control_S_AXI_RDATA ;
-input [1:0] mac_exact_control_S_AXI_RRESP ;
-input mac_exact_control_S_AXI_RVALID ;
-output [7:0] mac_exact_control_S_AXI_AWADDR ;
-output mac_exact_control_S_AXI_AWVALID ;
-output [31:0] mac_exact_control_S_AXI_WDATA ;
-output [3:0] mac_exact_control_S_AXI_WSTRB ;
-output mac_exact_control_S_AXI_WVALID ;
-output mac_exact_control_S_AXI_BREADY ;
-output [7:0] mac_exact_control_S_AXI_ARADDR ;
-output mac_exact_control_S_AXI_ARVALID ;
-output mac_exact_control_S_AXI_RREADY ;
+input ipv6_exact_control_S_AXI_AWREADY ;
+input ipv6_exact_control_S_AXI_WREADY ;
+input [1:0] ipv6_exact_control_S_AXI_BRESP ;
+input ipv6_exact_control_S_AXI_BVALID ;
+input ipv6_exact_control_S_AXI_ARREADY ;
+input [31:0] ipv6_exact_control_S_AXI_RDATA ;
+input [1:0] ipv6_exact_control_S_AXI_RRESP ;
+input ipv6_exact_control_S_AXI_RVALID ;
+output [7:0] ipv6_exact_control_S_AXI_AWADDR ;
+output ipv6_exact_control_S_AXI_AWVALID ;
+output [31:0] ipv6_exact_control_S_AXI_WDATA ;
+output [3:0] ipv6_exact_control_S_AXI_WSTRB ;
+output ipv6_exact_control_S_AXI_WVALID ;
+output ipv6_exact_control_S_AXI_BREADY ;
+output [7:0] ipv6_exact_control_S_AXI_ARADDR ;
+output ipv6_exact_control_S_AXI_ARVALID ;
+output ipv6_exact_control_S_AXI_RREADY ;
 
 wire enable_processing ;
 reg control_S_AXI_AWREADY ;
@@ -120,65 +120,65 @@ reg control_S_AXI_ARREADY ;
 reg [31:0] control_S_AXI_RDATA ;
 reg [1:0] control_S_AXI_RRESP ;
 reg control_S_AXI_RVALID ;
-reg [7:0] mac_exact_control_S_AXI_AWADDR ;
-reg mac_exact_control_S_AXI_AWVALID ;
-reg [31:0] mac_exact_control_S_AXI_WDATA ;
-reg [3:0] mac_exact_control_S_AXI_WSTRB ;
-reg mac_exact_control_S_AXI_WVALID ;
-reg mac_exact_control_S_AXI_BREADY ;
-reg [7:0] mac_exact_control_S_AXI_ARADDR ;
-reg mac_exact_control_S_AXI_ARVALID ;
-reg mac_exact_control_S_AXI_RREADY ;
+reg [7:0] ipv6_exact_control_S_AXI_AWADDR ;
+reg ipv6_exact_control_S_AXI_AWVALID ;
+reg [31:0] ipv6_exact_control_S_AXI_WDATA ;
+reg [3:0] ipv6_exact_control_S_AXI_WSTRB ;
+reg ipv6_exact_control_S_AXI_WVALID ;
+reg ipv6_exact_control_S_AXI_BREADY ;
+reg [7:0] ipv6_exact_control_S_AXI_ARADDR ;
+reg ipv6_exact_control_S_AXI_ARVALID ;
+reg ipv6_exact_control_S_AXI_RREADY ;
 
 assign enable_processing = 1'd1 ;
 
 always @* begin
-	mac_exact_control_S_AXI_AWADDR = control_S_AXI_AWADDR[7:0] ;
-	mac_exact_control_S_AXI_WDATA = control_S_AXI_WDATA ;
-	mac_exact_control_S_AXI_WSTRB = control_S_AXI_WSTRB ;
+	ipv6_exact_control_S_AXI_AWADDR = control_S_AXI_AWADDR[7:0] ;
+	ipv6_exact_control_S_AXI_WDATA = control_S_AXI_WDATA ;
+	ipv6_exact_control_S_AXI_WSTRB = control_S_AXI_WSTRB ;
 	if ( ( ( ( control_S_AXI_AWADDR >= 0 ) && ( control_S_AXI_AWADDR <= 255 ) ) && control_S_AXI_AWVALID ) ) begin
-		control_S_AXI_AWREADY = mac_exact_control_S_AXI_AWREADY ;
-		control_S_AXI_WREADY = mac_exact_control_S_AXI_WREADY ;
-		mac_exact_control_S_AXI_AWVALID = control_S_AXI_AWVALID ;
-		mac_exact_control_S_AXI_WVALID = control_S_AXI_WVALID ;
+		control_S_AXI_AWREADY = ipv6_exact_control_S_AXI_AWREADY ;
+		control_S_AXI_WREADY = ipv6_exact_control_S_AXI_WREADY ;
+		ipv6_exact_control_S_AXI_AWVALID = control_S_AXI_AWVALID ;
+		ipv6_exact_control_S_AXI_WVALID = control_S_AXI_WVALID ;
 	end
 	else  begin
 		control_S_AXI_AWREADY = 0 ;
 		control_S_AXI_WREADY = 0 ;
-		mac_exact_control_S_AXI_AWVALID = 0 ;
-		mac_exact_control_S_AXI_WVALID = 0 ;
+		ipv6_exact_control_S_AXI_AWVALID = 0 ;
+		ipv6_exact_control_S_AXI_WVALID = 0 ;
 	end
-	if ( mac_exact_control_S_AXI_BVALID ) begin
-		control_S_AXI_BRESP = mac_exact_control_S_AXI_BRESP ;
-		control_S_AXI_BVALID = mac_exact_control_S_AXI_BVALID ;
-		mac_exact_control_S_AXI_BREADY = control_S_AXI_BREADY ;
+	if ( ipv6_exact_control_S_AXI_BVALID ) begin
+		control_S_AXI_BRESP = ipv6_exact_control_S_AXI_BRESP ;
+		control_S_AXI_BVALID = ipv6_exact_control_S_AXI_BVALID ;
+		ipv6_exact_control_S_AXI_BREADY = control_S_AXI_BREADY ;
 	end
 	else  begin
 		control_S_AXI_BRESP = 0 ;
 		control_S_AXI_BVALID = 0 ;
-		mac_exact_control_S_AXI_BREADY = 0 ;
+		ipv6_exact_control_S_AXI_BREADY = 0 ;
 	end
 	if ( ( ( ( control_S_AXI_ARADDR >= 0 ) && ( control_S_AXI_ARADDR <= 255 ) ) && control_S_AXI_ARVALID ) ) begin
-		control_S_AXI_ARREADY = mac_exact_control_S_AXI_ARREADY ;
-		mac_exact_control_S_AXI_ARADDR = control_S_AXI_ARADDR[7:0] ;
-		mac_exact_control_S_AXI_ARVALID = control_S_AXI_ARVALID ;
+		control_S_AXI_ARREADY = ipv6_exact_control_S_AXI_ARREADY ;
+		ipv6_exact_control_S_AXI_ARADDR = control_S_AXI_ARADDR[7:0] ;
+		ipv6_exact_control_S_AXI_ARVALID = control_S_AXI_ARVALID ;
 	end
 	else  begin
 		control_S_AXI_ARREADY = 0 ;
-		mac_exact_control_S_AXI_ARADDR = 0 ;
-		mac_exact_control_S_AXI_ARVALID = 0 ;
+		ipv6_exact_control_S_AXI_ARADDR = 0 ;
+		ipv6_exact_control_S_AXI_ARVALID = 0 ;
 	end
-	if ( mac_exact_control_S_AXI_RVALID ) begin
-		control_S_AXI_RDATA = mac_exact_control_S_AXI_RDATA ;
-		control_S_AXI_RRESP = mac_exact_control_S_AXI_RRESP ;
-		control_S_AXI_RVALID = mac_exact_control_S_AXI_RVALID ;
-		mac_exact_control_S_AXI_RREADY = control_S_AXI_RREADY ;
+	if ( ipv6_exact_control_S_AXI_RVALID ) begin
+		control_S_AXI_RDATA = ipv6_exact_control_S_AXI_RDATA ;
+		control_S_AXI_RRESP = ipv6_exact_control_S_AXI_RRESP ;
+		control_S_AXI_RVALID = ipv6_exact_control_S_AXI_RVALID ;
+		ipv6_exact_control_S_AXI_RREADY = control_S_AXI_RREADY ;
 	end
 	else  begin
 		control_S_AXI_RDATA = 0 ;
 		control_S_AXI_RRESP = 0 ;
 		control_S_AXI_RVALID = 0 ;
-		mac_exact_control_S_AXI_RREADY = 0 ;
+		ipv6_exact_control_S_AXI_RREADY = 0 ;
 	end
 end
 
@@ -186,6 +186,6 @@ end
 endmodule
 
 // machine-generated file - do NOT modify by hand !
-// File created on 2020/11/05 15:52:03
+// File created on 2020/11/07 02:06:21
 // by Barista HDL generation library, version TRUNK @ 1007984
 

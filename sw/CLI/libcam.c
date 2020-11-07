@@ -23,8 +23,8 @@
 
 // global variables
 
-uint32_t mac_exact_ID = 0;
-CAM_CONTEXT CAM_CONTEXT_mac_exact;
+uint32_t ipv6_exact_ID = 0;
+CAM_CONTEXT CAM_CONTEXT_ipv6_exact;
 
 
 
@@ -120,16 +120,16 @@ int log_msg(const char* msg) {
 }
 
 
-void init_mac_exact() {
-    CAM_CONTEXT* cx = &CAM_CONTEXT_mac_exact;
+void init_ipv6_exact() {
+    CAM_CONTEXT* cx = &CAM_CONTEXT_ipv6_exact;
     uint32_t size = CAM_Init_GetAddrSize();
     // TODO: set baseAddr to the base address of the table
     addr_t baseAddr = SUME_SDNET_BASE_ADDR + 0x00;
     uint32_t max_depth = 64;
-    uint32_t key_width = 48;
+    uint32_t key_width = 128;
     // TODO: not sure what to use for clk_period
     uint32_t clk_period = 6667;
-    uint32_t value_width = 10;
+    uint32_t value_width = 58;
     uint32_t aging_width = 0;
     void (*register_write)(addr_t addr, uint32_t data);
     uint32_t (*register_read)(addr_t addr);
@@ -154,9 +154,9 @@ int cam_read_entry(uint32_t tableID, char* key, char* value, char* found) {
 
     CAM_CONTEXT* cx = NULL;
 
-    if (tableID == mac_exact_ID) {
-        init_mac_exact();
-        cx = &CAM_CONTEXT_mac_exact;
+    if (tableID == ipv6_exact_ID) {
+        init_ipv6_exact();
+        cx = &CAM_CONTEXT_ipv6_exact;
     }
 
     if (cx != NULL) {
@@ -183,9 +183,9 @@ int cam_read_entry(uint32_t tableID, char* key, char* value, char* found) {
 int cam_add_entry(uint32_t tableID, const char* key, const char* value) {
 
 
-    if (tableID == mac_exact_ID) {
-        init_mac_exact();
-        return CAM_Mgt_InsertEntry(&CAM_CONTEXT_mac_exact, key, value, 0);
+    if (tableID == ipv6_exact_ID) {
+        init_ipv6_exact();
+        return CAM_Mgt_InsertEntry(&CAM_CONTEXT_ipv6_exact, key, value, 0);
     }
 
     else {
@@ -199,9 +199,9 @@ int cam_add_entry(uint32_t tableID, const char* key, const char* value) {
 int cam_delete_entry(uint32_t tableID, const char* key) {
 
 
-    if (tableID == mac_exact_ID) {
-        init_mac_exact();
-        return CAM_Mgt_RemoveEntry (&CAM_CONTEXT_mac_exact, key);
+    if (tableID == ipv6_exact_ID) {
+        init_ipv6_exact();
+        return CAM_Mgt_RemoveEntry (&CAM_CONTEXT_ipv6_exact, key);
     }
 
     else {
@@ -215,9 +215,9 @@ int cam_delete_entry(uint32_t tableID, const char* key) {
 uint32_t cam_get_size(uint32_t tableID) {
     
 
-    if (tableID == mac_exact_ID) {
-        init_mac_exact();
-        return CAM_Mgt_GetSize(&CAM_CONTEXT_mac_exact);
+    if (tableID == ipv6_exact_ID) {
+        init_ipv6_exact();
+        return CAM_Mgt_GetSize(&CAM_CONTEXT_ipv6_exact);
     }
 
     else {

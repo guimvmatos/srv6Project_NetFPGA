@@ -2,6 +2,6 @@ INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/netfpga/projects/P4-Net
 INFO: [VRFC 10-311] analyzing module MyIngress_lvl_t_Engine
 INFO: [VRFC 10-311] analyzing module MyIngress_lvl_t_EngineStage_0
 INFO: [VRFC 10-311] analyzing module MyIngress_lvl_t_setup
-INFO: [VRFC 10-311] analyzing module MyIngress_lvl_t_setup_compute_mac_exact_req_lookup_request_key
+INFO: [VRFC 10-311] analyzing module MyIngress_lvl_t_setup_compute_ipv6_exact_req_lookup_request_key
 INFO: [VRFC 10-311] analyzing module MyIngress_lvl_t_setup_compute_control_nextSection
 INFO: [VRFC 10-311] analyzing module MyIngress_lvl_t_setup_compute_control_increment_offset

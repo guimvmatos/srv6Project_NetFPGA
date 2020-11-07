@@ -15,8 +15,19 @@ struct ethernet_t {
   dstAddr : 48,
   srcAddr : 48,
   etherType : 16 }
+struct ipv6_t {
+  isValid : 1,
+  version : 4,
+  traffic_class : 8,
+  flow_label : 20,
+  payload_len : 16,
+  next_hdr : 8,
+  hop_limit : 8,
+  src_addr : 128,
+  dst_addr : 128 }
 struct headers {
-  ethernet : ethernet_t }
+  ethernet : ethernet_t,
+  ipv6_outer : ipv6_t }
 struct user_metadata_t {
   unused : 8 }
 struct digest_data_t {
@@ -36,10 +47,11 @@ class sume_metadata_t_0::Tuple(inout) {
     dst_port : 8,
     src_port : 8,
     pkt_len : 16 } }
-class MyParser_t::ParsingEngine(16384,2,start) {
+class MyParser_t::ParsingEngine(16384,3,start) {
   class hdr_t::Tuple(out) {
     struct {
-      ethernet : ethernet_t } }
+      ethernet : ethernet_t,
+      ipv6_outer : ipv6_t } }
   class user_metadata_t_0::Tuple(out) {
     struct {
       unused : 8 } }
@@ -71,6 +83,8 @@ class MyParser_t::ParsingEngine(16384,2,start) {
       dstAddr_0 : 48,
       srcAddr_0 : 48,
       etherType_0 : 16 }
+    map transition_0 {
+      (34525, parse_ipv6_outer) }
     method update = {
       hdr.ethernet.isValid = 1,
       hdr.ethernet.dstAddr = dstAddr_0,
@@ -79,15 +93,39 @@ class MyParser_t::ParsingEngine(16384,2,start) {
       MyParser_extracts.size = (MyParser_extracts.size + 112),
       user_metadata.unused = 0,
       digest_data.unused = 0 }
-    method move_to_section = accept;
+    method move_to_section = transition_0(etherType_0);
     method increment_offset = 112; }
-  class accept::Section(2) {
+  class parse_ipv6_outer::Section(2) {
+    struct {
+      version_0 : 4,
+      traffic_class_0 : 8,
+      flow_label_0 : 20,
+      payload_len_0 : 16,
+      next_hdr_0 : 8,
+      hop_limit_0 : 8,
+      src_addr_0 : 128,
+      dst_addr_0 : 128 }
+    method update = {
+      hdr.ipv6_outer.isValid = 1,
+      hdr.ipv6_outer.version = version_0,
+      hdr.ipv6_outer.traffic_class = traffic_class_0,
+      hdr.ipv6_outer.flow_label = flow_label_0,
+      hdr.ipv6_outer.payload_len = payload_len_0,
+      hdr.ipv6_outer.next_hdr = next_hdr_0,
+      hdr.ipv6_outer.hop_limit = hop_limit_0,
+      hdr.ipv6_outer.src_addr = src_addr_0,
+      hdr.ipv6_outer.dst_addr = dst_addr_0,
+      MyParser_extracts.size = (MyParser_extracts.size + 320) }
+    method move_to_section = accept;
+    method increment_offset = 320; }
+  class accept::Section(3) {
     method move_to_section = done(0);
     method increment_offset = 0; }
   class reject::Section {
     method move_to_section = done(0);
     method increment_offset = 0; } }
-struct mac_forward_0_cp {
+struct ipv6_forward_0_cp {
+  dstAddr : 48,
   port : 8 }
 class MyIngress_lvl_t::TupleEngine(1,setup) {
   class digest_data_t_1::Tuple(inout) {
@@ -95,7 +133,8 @@ class MyIngress_lvl_t::TupleEngine(1,setup) {
       unused : 256 } }
   class hdr_t_0::Tuple(inout) {
     struct {
-      ethernet : ethernet_t } }
+      ethernet : ethernet_t,
+      ipv6_outer : ipv6_t } }
   class local_state_t::Tuple(out) {
     struct {
       id : 16 } }
@@ -114,40 +153,41 @@ class MyIngress_lvl_t::TupleEngine(1,setup) {
   class user_metadata_t_1::Tuple(inout) {
     struct {
       unused : 8 } }
-  class mac_exact_req_t::Tuple(out) {
+  class ipv6_exact_req_t::Tuple(out) {
     struct {
-      lookup_request_key : 48 } }
+      lookup_request_key : 128 } }
   digest_data_t_1 digest_data;
   hdr_t_0 hdr;
   local_state_t local_state;
   sume_metadata_t_1 sume_metadata;
   user_metadata_t_1 user_metadata;
-  mac_exact_req_t mac_exact_req;
+  ipv6_exact_req_t ipv6_exact_req;
   class setup::Section(1) {
     method update = {
-      mac_exact_req.lookup_request_key = hdr.ethernet.dstAddr }
+      ipv6_exact_req.lookup_request_key = hdr.ipv6_outer.dst_addr }
     method move_to_section = done(0);
     method increment_offset = 0; } }
-class mac_exact_t::LookupEngine(EM,64,48,10,1,0) {
-  class mac_exact_req_t::Tuple(in) {
+class ipv6_exact_t::LookupEngine(EM,64,128,58,1,0) {
+  class ipv6_exact_req_t::Tuple(in) {
     struct {
-      lookup_request_key : 48 } }
-  class mac_exact_resp_t::Tuple(out) {
+      lookup_request_key : 128 } }
+  class ipv6_exact_resp_t::Tuple(out) {
     struct {
       hit : 1,
       action_run : 2,
-      mac_forward_0 : mac_forward_0_cp } }
-  mac_exact_req_t request;
-  mac_exact_resp_t response;
+      ipv6_forward_0 : ipv6_forward_0_cp } }
+  ipv6_exact_req_t request;
+  ipv6_exact_resp_t response;
   method send_request = { key = request }
   method receive_response = { response = value } }
-class MyIngress_lvl_0_t::TupleEngine(3,mac_exact_sec) {
+class MyIngress_lvl_0_t::TupleEngine(3,ipv6_exact_sec) {
   class digest_data_t_1::Tuple(inout) {
     struct {
       unused : 256 } }
   class hdr_t_0::Tuple(inout) {
     struct {
-      ethernet : ethernet_t } }
+      ethernet : ethernet_t,
+      ipv6_outer : ipv6_t } }
   class local_state_t::Tuple(in) {
     struct {
       id : 16 } }
@@ -166,39 +206,42 @@ class MyIngress_lvl_0_t::TupleEngine(3,mac_exact_sec) {
   class user_metadata_t_1::Tuple(inout) {
     struct {
       unused : 8 } }
-  class mac_exact_resp_t::Tuple(in) {
+  class ipv6_exact_resp_t::Tuple(in) {
     struct {
       hit : 1,
       action_run : 2,
-      mac_forward_0 : mac_forward_0_cp } }
+      ipv6_forward_0 : ipv6_forward_0_cp } }
   digest_data_t_1 digest_data;
   hdr_t_0 hdr;
   local_state_t local_state;
   sume_metadata_t_1 sume_metadata;
   user_metadata_t_1 user_metadata;
-  mac_exact_resp_t mac_exact_resp;
+  ipv6_exact_resp_t ipv6_exact_resp;
   class NoAction_0_sec::Section(2) {
     method move_to_section = sink;
     method increment_offset = 0; }
-  class mac_exact_sec::Section(1) {
+  class ipv6_exact_sec::Section(1) {
     map action_select {
-      (1, mac_forward_0_sec),
+      (1, ipv6_forward_0_sec),
       (2, NoAction_0_sec),
       NoAction_0_sec }
-    method move_to_section = if ((mac_exact_resp.hit == 1)) action_select(mac_exact_resp.action_run) else NoAction_0_sec;
+    method move_to_section = if ((ipv6_exact_resp.hit == 1)) action_select(ipv6_exact_resp.action_run) else NoAction_0_sec;
     method increment_offset = 0; }
-  class mac_forward_0_sec::Section(2) {
+  class ipv6_forward_0_sec::Section(2) {
     method update = {
-      sume_metadata.dst_port = mac_exact_resp.mac_forward_0.port }
+      sume_metadata.dst_port = ipv6_exact_resp.ipv6_forward_0.port,
+      hdr.ethernet.srcAddr = hdr.ethernet.dstAddr,
+      hdr.ethernet.dstAddr = ipv6_exact_resp.ipv6_forward_0.dstAddr }
     method move_to_section = sink;
     method increment_offset = 0; }
   class sink::Section(3) {
     method move_to_section = done(0);
     method increment_offset = 0; } }
-class MyDeparser_t::EditingEngine(16384,3,extract_headers_sec) {
+class MyDeparser_t::EditingEngine(16384,4,extract_headers_sec) {
   class hdr_t_1::Tuple(in) {
     struct {
-      ethernet : ethernet_t } }
+      ethernet : ethernet_t,
+      ipv6_outer : ipv6_t } }
   class user_metadata_t_2::Tuple(in) {
     struct {
       unused : 8 } }
@@ -226,9 +269,31 @@ class MyDeparser_t::EditingEngine(16384,3,extract_headers_sec) {
   sume_metadata_t_2 sume_metadata;
   MyDeparser_extracts_t MyDeparser_extracts;
   class act_sec::Section(2) {
-    method move_to_section = emit_0;
+    method move_to_section = emit_1;
     method increment_offset = 0; }
-  class emit_0::Section(3) {
+  class emit_0::Section(4) {
+    struct {
+      version : 4,
+      traffic_class : 8,
+      flow_label : 20,
+      payload_len : 16,
+      next_hdr : 8,
+      hop_limit : 8,
+      src_addr : 128,
+      dst_addr : 128 }
+    method insert = if (hdr.ipv6_outer.isValid) 320 else 0;
+    method update = {
+      version = hdr.ipv6_outer.version,
+      traffic_class = hdr.ipv6_outer.traffic_class,
+      flow_label = hdr.ipv6_outer.flow_label,
+      payload_len = hdr.ipv6_outer.payload_len,
+      next_hdr = hdr.ipv6_outer.next_hdr,
+      hop_limit = hdr.ipv6_outer.hop_limit,
+      src_addr = hdr.ipv6_outer.src_addr,
+      dst_addr = hdr.ipv6_outer.dst_addr }
+    method move_to_section = done(0);
+    method increment_offset = 0; }
+  class emit_1::Section(3) {
     struct {
       dstAddr : 48,
       srcAddr : 48,
@@ -238,7 +303,7 @@ class MyDeparser_t::EditingEngine(16384,3,extract_headers_sec) {
       dstAddr = hdr.ethernet.dstAddr,
       srcAddr = hdr.ethernet.srcAddr,
       etherType = hdr.ethernet.etherType }
-    method move_to_section = done(0);
+    method move_to_section = emit_0;
     method increment_offset = 0; }
   class extract_headers_sec::Section(1) {
     method remove = MyDeparser_extracts.size;
@@ -251,7 +316,7 @@ class SimpleSumeSwitch::System {
   sume_metadata_t_0 sume_metadata;
   MyParser_t MyParser;
   MyIngress_lvl_t MyIngress_lvl;
-  mac_exact_t mac_exact;
+  ipv6_exact_t ipv6_exact;
   MyIngress_lvl_0_t MyIngress_lvl_0;
   MyDeparser_t MyDeparser;
   Packet_input packet_in;
@@ -262,8 +327,8 @@ class SimpleSumeSwitch::System {
     MyIngress_lvl_0.local_state = MyIngress_lvl.local_state,
     MyIngress_lvl_0.sume_metadata = MyIngress_lvl.sume_metadata,
     MyIngress_lvl_0.user_metadata = MyIngress_lvl.user_metadata,
-    mac_exact.request = MyIngress_lvl.mac_exact_req,
-    MyIngress_lvl_0.mac_exact_resp = mac_exact.response,
+    ipv6_exact.request = MyIngress_lvl.ipv6_exact_req,
+    MyIngress_lvl_0.ipv6_exact_resp = ipv6_exact.response,
     MyIngress_lvl.hdr = MyParser.hdr,
     MyDeparser.hdr = MyIngress_lvl_0.hdr,
     MyIngress_lvl.user_metadata = MyParser.user_metadata,

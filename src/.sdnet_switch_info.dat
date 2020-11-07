@@ -67,24 +67,24 @@
         "px_type_name" : "MyIngress_lvl_t"
       },
       {
-        "px_name" : "mac_exact",
-        "px_type_name" : "mac_exact_t"
+        "px_name" : "ipv6_exact",
+        "px_type_name" : "ipv6_exact_t"
       },
       {
         "px_name" : "MyIngress_lvl_0",
         "px_type_name" : "MyIngress_lvl_0_t"
       }
     ],
-    "px_system_connections" : ["MyIngress_lvl_0.digest_data = MyIngress_lvl.digest_data", "MyIngress_lvl_0.hdr = MyIngress_lvl.hdr", "MyIngress_lvl_0.local_state = MyIngress_lvl.local_state", "MyIngress_lvl_0.sume_metadata = MyIngress_lvl.sume_metadata", "MyIngress_lvl_0.user_metadata = MyIngress_lvl.user_metadata", "mac_exact.request = MyIngress_lvl.mac_exact_req", "MyIngress_lvl_0.mac_exact_resp = mac_exact.response"],
+    "px_system_connections" : ["MyIngress_lvl_0.digest_data = MyIngress_lvl.digest_data", "MyIngress_lvl_0.hdr = MyIngress_lvl.hdr", "MyIngress_lvl_0.local_state = MyIngress_lvl.local_state", "MyIngress_lvl_0.sume_metadata = MyIngress_lvl.sume_metadata", "MyIngress_lvl_0.user_metadata = MyIngress_lvl.user_metadata", "ipv6_exact.request = MyIngress_lvl.ipv6_exact_req", "MyIngress_lvl_0.ipv6_exact_resp = ipv6_exact.response"],
     "px_lookups" : [
       {
-        "px_name" : "mac_exact",
-        "p4_name" : "mac_exact",
+        "px_name" : "ipv6_exact",
+        "p4_name" : "ipv6_exact",
         "px_class" : "LookupEngine",
-        "px_type_name" : "mac_exact_t",
+        "px_type_name" : "ipv6_exact_t",
         "match_type" : "EM",
         "action_ids" : {
-          "MyIngress.mac_forward" : 1,
+          "MyIngress.ipv6_forward" : 1,
           ".NoAction" : 2
         },
         "response_fields" : [
@@ -99,28 +99,33 @@
             "size" : 2
           },
           {
-            "px_name" : "mac_forward_0",
+            "px_name" : "ipv6_forward_0",
             "type" : "struct",
             "fields" : [
+              {
+                "px_name" : "dstAddr",
+                "type" : "bits",
+                "size" : 48
+              },
               {
                 "px_name" : "port",
                 "type" : "bits",
                 "size" : 8
               }
             ],
-            "p4_action" : "MyIngress.mac_forward"
+            "p4_action" : "MyIngress.ipv6_forward"
           }
         ],
         "request_fields" : [
           {
             "px_name" : "lookup_request_key",
-            "p4_name" : "hdr.ethernet.dstAddr",
+            "p4_name" : "hdr.ipv6_outer.dst_addr",
             "type" : "bits",
-            "size" : 48
+            "size" : 128
           }
         ],
         "annotations" : {
-          "name" : ["MyIngress.mac_exact"],
+          "name" : ["MyIngress.ipv6_exact"],
           "Xilinx_ExternallyConnected" : ["0"],
           "Xilinx_LookupEngineType" : ["EM"]
         }

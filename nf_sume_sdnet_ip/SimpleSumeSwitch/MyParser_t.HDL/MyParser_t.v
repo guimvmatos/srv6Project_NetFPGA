@@ -29,9 +29,9 @@
 //----------------------------------------------------------------------------
 /*
 
- tx latency = 18 (cycles)
- min latency = 17 (cycles)
- max latency = 17 (cycles)
+ tx latency = 28 (cycles)
+ min latency = 27 (cycles)
+ max latency = 27 (cycles)
 
 input/output tuple 'control'
 	section 3-bit field @ [22:20]
@@ -41,10 +41,19 @@ input/output tuple 'control'
 	errorCode 3-bit field @ [2:0]
 
 output tuple 'hdr'
-	ethernet_isValid 1-bit field @ [112:112]
-	ethernet_dstAddr 48-bit field @ [111:64]
-	ethernet_srcAddr 48-bit field @ [63:16]
-	ethernet_etherType 16-bit field @ [15:0]
+	ethernet_isValid 1-bit field @ [433:433]
+	ethernet_dstAddr 48-bit field @ [432:385]
+	ethernet_srcAddr 48-bit field @ [384:337]
+	ethernet_etherType 16-bit field @ [336:321]
+	ipv6_outer_isValid 1-bit field @ [320:320]
+	ipv6_outer_version 4-bit field @ [319:316]
+	ipv6_outer_traffic_class 8-bit field @ [315:308]
+	ipv6_outer_flow_label 20-bit field @ [307:288]
+	ipv6_outer_payload_len 16-bit field @ [287:272]
+	ipv6_outer_next_hdr 8-bit field @ [271:264]
+	ipv6_outer_hop_limit 8-bit field @ [263:256]
+	ipv6_outer_src_addr 128-bit field @ [255:128]
+	ipv6_outer_dst_addr 128-bit field @ [127:0]
 
 output tuple 'user_metadata'
 	unused 8-bit field @ [7:0]
@@ -129,7 +138,7 @@ output [255:0] packet_out_DAT ;
 output tuple_out_control_VALID ;
 output [22:0] tuple_out_control_DATA ;
 output tuple_out_hdr_VALID ;
-output [112:0] tuple_out_hdr_DATA ;
+output [433:0] tuple_out_hdr_DATA ;
 output tuple_out_user_metadata_VALID ;
 output [7:0] tuple_out_user_metadata_DATA ;
 output tuple_out_digest_data_VALID ;
@@ -154,8 +163,8 @@ wire tuple_out_valid ;
 reg [22:0] tuple_out_control_DATA ;
 wire [22:0] tuple_out_control_i ;
 wire tuple_out_hdr_VALID ;
-wire [112:0] tuple_out_hdr_DATA ;
-wire [112:0] tuple_out_hdr ;
+wire [433:0] tuple_out_hdr_DATA ;
+wire [433:0] tuple_out_hdr ;
 wire tuple_out_user_metadata_VALID ;
 wire [7:0] tuple_out_user_metadata_DATA ;
 wire [7:0] tuple_out_user_metadata ;
@@ -249,6 +258,6 @@ MyParser_t_inst
 endmodule
 
 // machine-generated file - do NOT modify by hand !
-// File created on 2020/11/05 15:51:52
+// File created on 2020/11/07 02:06:07
 // by Barista HDL generation library, version TRUNK @ 1007984
 
