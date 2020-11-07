@@ -17,6 +17,8 @@ const bit<16> TYPE_IPV6 = 0x86dd;
 
 typedef bit<48> macAddr_t;
 typedef bit<128> ip6Addr_t;
+
+
 header ethernet_t {
     macAddr_t dstAddr;
     macAddr_t srcAddr;
@@ -44,60 +46,18 @@ header gtp_t {
     bit<16> msglen;
     bit<32> teid;
 }
-header gtp_ext_t {
-	bit<8> next_extension;
-}
-header pdu_container_t {
-	bit<4> pdu_type;
-	bit<5> spare;
-	bit<1> rqi;
-	bit<6> qosid;
-	bit<8> padding; 
-}
+
 header udp_t {
     bit<16> sport;
     bit<16> dport;
     bit<16> len;
     bit<16> checksum;
 }
-header tcp_t {
-    bit<16> srcPort;
-    bit<16> dstPort;
-    bit<32> seqNo;
-    bit<32> ackNo;
-    bit<4>  dataOffset;
-    bit<3>  res;
-    bit<3>  ecn;
-    bit<6>  ctrl;
-    bit<16> window;
-    bit<16> checksum;
-    bit<16> urgentPtr;
-}
-header srv6_t {
-    bit<8> next_hdr;
-    bit<8> hdr_ext_len;
-    bit<8> routing_type;
-    bit<8> segment_left;
-    bit<8> last_entry;
-    bit<8> flags;
-    bit<16> tag;
-}
-header srv6_list_t {
-    ip6Addr_t segment_id;
-}   
 
 struct headers {
     ethernet_t   ethernet;
-    ipv6_t       ipv6_outer;
-    srv6_t       srv6;
-    srv6_list_t[MAX_HOPS]   srv6_list;
+    ipv6_t       ipv6_outer;  
     udp_t        udp;
-    gtp_t        gtp;
-    gtp_ext_t    gtp_ext;
-	pdu_container_t    pdu_container;
-    ipv6_t       ipv6_inner;
-    tcp_t		 tcp_inner;
-    udp_t		 udp_inner;
 }
 
 struct user_metadata_t {
