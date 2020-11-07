@@ -21,6 +21,9 @@ const bit<8> TYPE_UDP = 17;
 /* for UDP header */
 const bit<16> TYPE_GTP = 2152;
 
+/* for GTP Extension header */
+const bit<8> pdu_container = 133;
+
 typedef bit<48> macAddr_t;
 typedef bit<128> ip6Addr_t;
 
@@ -61,11 +64,24 @@ header gtp_t {
     bit<32> teid;
 }
 
+header gtp_ext_t {
+	bit<8> next_extension;
+}
+header pdu_container_t {
+	bit<4> pdu_type;
+	bit<5> spare;
+	bit<1> rqi;
+	bit<6> qosid;
+	bit<8> padding; 
+}
+
 struct headers {
     ethernet_t   ethernet;
     ipv6_t       ipv6_outer;  
     udp_t        udp;
     gtp_t        gtp;
+    gtp_ext_t    gtp_ext;
+	pdu_container_t    pdu_container;
 }
 
 struct user_metadata_t {
@@ -103,7 +119,7 @@ parser MyParser(packet_in packet,
         packet.extract(hdr.ipv6_outer);
         transition select (hdr.ipv6_outer.next_hdr) {
             TYPE_UDP: parse_udp;
-            default: accept;
+            /*default: accept; LIBERAR DEPOIS DE CONFIRAMR PARSER ATÉ O FIM */
        }
     }
 
@@ -116,7 +132,21 @@ parser MyParser(packet_in packet,
 
     state parse_gtp{
         packet.extract(hdr.gtp);
-        transition accept;
+        transition select(hdt.gtp.extension_header_flag_id){
+            1 : parse_gtp_ext;
+        }
+    }
+
+    state parse_gtp_ext{
+    	packet.extract(hdr.gtp_ext);
+    	transition select(hdr.gtp_ext.next_extension){
+		pdu_container: parse_pdu_container; 
+    	}
+    }
+
+    state parse_pdu_container{
+    	packet.extract(hdr.pdu_container);
+    	transition accept;
     }
 }
 
@@ -167,6 +197,8 @@ control MyDeparser(packet_out packet,
         packet.emit(hdr.ipv6_outer);
         packet.emit(hdr.udp);
         packet.emit(hdr.gtp);
+        packet.emit(gtp_ext);
+	    packet.emit(pdu_container);
  
     }
 }   

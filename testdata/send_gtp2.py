@@ -17,18 +17,14 @@ def main():
 
     if len(sys.argv)<2:
         print 'pass 2 arguments: <destination> "<message>"'
-        exit(1)
-    #addr = socket.gethostbyname(sys.argv[1])
-    addr = "2001:0DB8:AC10:FE01:0000:0000:0000:0002"#socket.gethostbyname(sys.argv[1])
+        exit(1)]
+
+    addr = "2001:0DB8:AC10:FE01:0000:0000:0000:0002"
 
     iface = "enp0s8" 
 
     print "sending on interface %s to %s" % (iface, str(addr))
-    pkt =  Ether(src=get_if_hwaddr(iface), dst='00:00:00:00:00:04')
-    #pkt = pkt / IPv6(dst=addr) / UDP(dport=1234 ,sport=random.randint(49152,65535)) / sys.argv[1]
-    #pkt = pkt /IPv6(dst=addr) / TCP(dport=1234, sport=random.randint(49152,65535), flags=None) / sys.argv[1]
-    #pkt = pkt / IPv6(dst="2001:0DB8:AC10:FE01:0000:0000:0000:0002" , src="2001:0DB8:AC10:FE01:0000:0000:0002:0002") / UDP (sport=64515, dport=2152 ) / GTP_U_Header(TEID=31)/ IPv6() / TCP(dport=random.randint(29152,65535), sport=random.randint(49152,65535)),  / sys.argv[1]
-    pkt = pkt / IPv6(dst="fc00::2" , src="fc00::1") / UDP (sport=64515, dport=2152 ) / GTP_U_Header(TEID=32, Reserved=0, E=1) / dl_pdu_session(gtp_ext=133,QoSID=14) / IPv6(dst="fc00::2" , src="fc00::1") / UDP(dport=80,sport=35000) / sys.argv[1]
+    pkt =  Ether(src=get_if_hwaddr(iface), dst='00:00:00:00:00:04') / IPv6(dst="fc00::2" , src="fc00::1") / UDP (sport=64515, dport=2152 ) / GTP_U_Header(TEID=32, Reserved=0, E=1) / dl_pdu_session(gtp_ext=133,QoSID=14) / IPv6(dst="fc00::2" , src="fc00::1") / UDP(dport=80,sport=35000) / sys.argv[1]
     pkt.show2()
     pkt.summary()
     sendp(pkt, iface=iface, verbose=False)
