@@ -132,7 +132,7 @@ parser MyParser(packet_in packet,
 
     state parse_gtp{
         packet.extract(hdr.gtp);
-        transition select(hdt.gtp.extension_header_flag_id){
+        transition select(hdr.gtp.extension_header_flag_id){
             1 : parse_gtp_ext;
         }
     }
@@ -197,8 +197,8 @@ control MyDeparser(packet_out packet,
         packet.emit(hdr.ipv6_outer);
         packet.emit(hdr.udp);
         packet.emit(hdr.gtp);
-        packet.emit(gtp_ext);
-	    packet.emit(pdu_container);
+        packet.emit(hdr.gtp_ext);
+	    packet.emit(hdr.pdu_container);
  
     }
 }   
