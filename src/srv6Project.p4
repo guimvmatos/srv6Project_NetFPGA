@@ -52,6 +52,20 @@ header udp_t {
     bit<16> checksum;
 }
 
+header tcp_t {
+    bit<16> srcPort;
+    bit<16> dstPort;
+    bit<32> seqNo;
+    bit<32> ackNo;
+    bit<4>  dataOffset;
+    bit<3>  res;
+    bit<3>  ecn;
+    bit<6>  ctrl;
+    bit<16> window;
+    bit<16> checksum;
+    bit<16> urgentPtr;
+}
+
 header gtp_t {
     bit<3>  version_field_id;
     bit<1>  proto_type_id;
@@ -67,6 +81,7 @@ header gtp_t {
 header gtp_ext_t {
 	bit<8> next_extension;
 }
+
 header pdu_container_t {
 	bit<4> pdu_type;
 	bit<5> spare;
@@ -82,6 +97,9 @@ struct headers {
     gtp_t        gtp;
     gtp_ext_t    gtp_ext;
 	pdu_container_t    pdu_container;
+    ipv6_t       ipv6_inner;
+    tcp_t		 tcp_inner;
+    udp_t		 udp_inner;
 }
 
 struct user_metadata_t {
@@ -199,6 +217,9 @@ control MyDeparser(packet_out packet,
         packet.emit(hdr.gtp);
         packet.emit(hdr.gtp_ext);
 	    packet.emit(hdr.pdu_container);
+        packet.emit(hdr.ipv6_inner);
+        packet.emit(hdr.tcp_inner);
+        packet.emit(hdr.udp_inner);
  
     }
 }   
