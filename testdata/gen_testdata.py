@@ -34,6 +34,7 @@ from nf_sim_tools import *
 import random
 from collections import OrderedDict
 import sss_sdnet_tuples
+from gpt2 import *
 
 ###########
 # pkt generation tools
