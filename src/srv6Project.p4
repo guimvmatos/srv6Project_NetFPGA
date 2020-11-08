@@ -158,7 +158,7 @@ parser MyParser(packet_in packet,
         transition select (hdr.ipv6_outer.next_hdr) {
             TYPE_SRV6: parse_srv6;
             TYPE_UDP: parse_udp;
-            /*default: accept; LIBERAR DEPOIS DE CONFIRAMR PARSER ATÉ O FIM */
+            /*default: accept; LIBERAR DEPOIS DE CONFIRMAR PARSER ATÉ O FIM */
        }
     }
 
@@ -199,7 +199,7 @@ parser MyParser(packet_in packet,
     	transition select(hdr.ipv6_inner.next_hdr){
     		TYPE_UDP: parse_udp_inner;
     		TYPE_TCP: parse_tcp_inner;
-    		/*default: accept; LIBERAR DEPOIS DE CONFIRAMR PARSER ATÉ O FIM */
+    		/*default: accept; LIBERAR DEPOIS DE CONFIRMAR PARSER ATÉ O FIM */
     	}
     }
 
@@ -228,7 +228,41 @@ control MyIngress(inout headers hdr,
         hdr.ethernet.srcAddr = hdr.ethernet.dstAddr;
         hdr.ethernet.dstAddr = dstAddr;
     }
+
+    action build_srv6(bit<8> num_segments) {
+        hdr.srv6.setValid();
+        hdr.srv6.next_hdr = TYPE_UDP;
+        hdr.srv6.hdr_ext_len =  num_segments * 2;
+        hdr.srv6.routing_type = 4;
+        hdr.srv6.segment_left = num_segments - 1;
+        hdr.srv6.last_entry = num_segments - 1;
+        hdr.srv6.flags = 0;
+        hdr.srv6.tag = 0;
+        hdr.ipv6_outer.next_hdr = TYPE_SRV6;
+    }
     
+    action srv6_t_insert_2(ip6Addr_t s1, ip6Addr_t s2){
+        hdr.ipv6_outer.payload_len = hdr.ipv6_outer.payload_len + 40;
+        hdr.srv6_sid1.setValid();
+        hdr.srv6_sid1.segment_id = s1;
+        hdr.srv6_sid2.setValid();
+        hdr.srv6_sid2.segment_id = s2;
+        hdr.ipv6_outer.dst_addr = s2;
+        build_srv6(2);
+    }
+
+    action srv6_t_insert_3(ip6Addr_t s1, ip6Addr_t s2,  ip6Addr_t s3){
+        hdr.ipv6_outer.payload_len = hdr.ipv6_outer.payload_len + 56;
+        hdr.srv6_sid1.setValid();
+        hdr.srv6_sid1.segment_id = s1;
+        hdr.srv6_sid2.setValid();
+        hdr.srv6_sid2.segment_id = s2;
+        hdr.srv6_sid3.setValid();
+        hdr.srv6_sid3.segment_id = s3;
+        hdr.ipv6_outer.dst_addr = s3;
+        build_srv6(3);
+    }
+
     table ipv6_outer_lpm{
         key = {
             hdr.ipv6_outer.dst_addr:   exact;
@@ -241,8 +275,29 @@ control MyIngress(inout headers hdr,
         default_action = NoAction;
     }
 
+    table teid_exact{
+        key = {
+            hdr.gtp.teid: ternary;
+/*          hdr.pdu_container.qosid: ternary;
+            hdr.ipv6_inner.dst_addr: ternary;
+            hdr.ipv6_inner.src_addr: ternary;
+            hdr.ipv6_inner.next_hdr: ternary;
+            hdr.tcp_inner.dstPort: ternary;
+            hdr.tcp_inner.srcPort: ternary;
+            hdr.udp_inner.dport: ternary;
+            hdr.udp_inner.sport: ternary;
+*/      }
+        actions = {
+            srv6_t_insert_2;
+            srv6_t_insert_3;
+        }
+    }
+
     apply{
-    ipv6_outer_lpm.apply();
+        if (hdr.srv6.isValid() && hdr.gtp.spare == 0){
+            teid_exact.apply();
+        } 
+        ipv6_outer_lpm.apply();
     }
 }
 
