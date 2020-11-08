@@ -229,13 +229,13 @@ control MyIngress(inout headers hdr,
         hdr.ethernet.dstAddr = dstAddr;
     }
 
-    action build_srv6(bit<8> num_segments) {
+    /*action build_srv6(bit<8> num_segments) {
         hdr.srv6.setValid();
         hdr.srv6.next_hdr = TYPE_UDP;
         /*hdr.srv6.hdr_ext_len =  num_segments * 2;
         hdr.srv6.routing_type = 4;
         hdr.srv6.segment_left = num_segments - 1;
-        hdr.srv6.last_entry = num_segments - 1;*/
+        hdr.srv6.last_entry = num_segments - 1;
         hdr.srv6.flags = 0;
         hdr.srv6.tag = 0;
         hdr.ipv6_outer.next_hdr = TYPE_SRV6;
@@ -261,7 +261,7 @@ control MyIngress(inout headers hdr,
         hdr.srv6_sid3.segment_id = s3;
         hdr.ipv6_outer.dst_addr = s3;
         build_srv6(3);
-    }
+    }*/
 
     table ipv6_outer_lpm{
         key = {
@@ -288,9 +288,13 @@ control MyIngress(inout headers hdr,
             hdr.udp_inner.sport: ternary;
 */      }
         actions = {
-            srv6_t_insert_2;
-            srv6_t_insert_3;
+            /*srv6_t_insert_2;
+            srv6_t_insert_3;*/
+            ipv6_forward;
+            NoAction;
         }
+        size = 64;
+        default_action = NoAction;
     }
 
     apply{
