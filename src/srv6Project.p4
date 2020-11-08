@@ -232,10 +232,10 @@ control MyIngress(inout headers hdr,
     action build_srv6(bit<8> num_segments) {
         hdr.srv6.setValid();
         hdr.srv6.next_hdr = TYPE_UDP;
-        hdr.srv6.hdr_ext_len =  num_segments * 2;
+        /*hdr.srv6.hdr_ext_len =  num_segments * 2;
         hdr.srv6.routing_type = 4;
         hdr.srv6.segment_left = num_segments - 1;
-        hdr.srv6.last_entry = num_segments - 1;
+        hdr.srv6.last_entry = num_segments - 1;*/
         hdr.srv6.flags = 0;
         hdr.srv6.tag = 0;
         hdr.ipv6_outer.next_hdr = TYPE_SRV6;
