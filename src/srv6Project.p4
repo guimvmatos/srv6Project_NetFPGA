@@ -241,13 +241,13 @@ control MyIngress(inout headers hdr,
         hdr.ipv6_outer.next_hdr = TYPE_SRV6;
     }
     
-    action srv6_t_insert_2(ip6Addr_t s1, ip6Addr_t s2){
+    action srv6_t_insert_2(ip6Addr_t s1/*, ip6Addr_t s2*/){
         hdr.ipv6_outer.payload_len = hdr.ipv6_outer.payload_len + 40;
         hdr.srv6_sid1.setValid();
         hdr.srv6_sid1.segment_id = s1;
         hdr.srv6_sid2.setValid();
-        hdr.srv6_sid2.segment_id = s2;
-        hdr.ipv6_outer.dst_addr = s2;
+        hdr.srv6_sid2.segment_id = s1;/*s2*/
+        hdr.ipv6_outer.dst_addr = s1;/*s2*/
         build_srv6(2);
     }
 
@@ -289,7 +289,7 @@ control MyIngress(inout headers hdr,
 */      }
         actions = {
             srv6_t_insert_2;
-            srv6_t_insert_3;
+            /*srv6_t_insert_3;*/
             NoAction;
         }
         size = 64;

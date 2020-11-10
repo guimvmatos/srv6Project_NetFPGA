@@ -32,7 +32,9 @@ table_cam_add_entry ipv6_outer_lpm ipv6_forward 0xfc0000000000000000000000000000
 
 //table_tcam_add_entry <table_name> <address> <action_name> <key1/mask1 ... keyN/maskN> => <action_data>
 
-table_tcam_add_entry teid_exact 0x1 srv6_t_insert_2 0xfffffffff/0xfffffffff => 0xfc000000000000000000000000000001 0xfc000000000000000000000000000002
+//table_tcam_add_entry teid_exact 0x1 srv6_t_insert_2 0xfffffffff/0xfffffffff => 0xfc000000000000000000000000000001 0xfc000000000000000000000000000002
+
+table_tcam_add_entry teid_exact 0x1 srv6_t_insert_2 0xfffffffff/0xfffffffff => 0xfc000000000000000000000000000001
 
 //table_tcam_add_entry teid_exact 0x1 srv6_t_insert_2 0b00000000000000000000000000100000/0b11111111111111111111111111111111 => 0xfc000000000000000000000000000005 0xfc000000000000000000000000000006
 
