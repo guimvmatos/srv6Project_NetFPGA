@@ -131,8 +131,8 @@ def pkt_send():
     pkt1 = pad_pkt(pkt1, 64)
     expPkt(pkt1, 'nf2')
 
-for i in range(5):
-    pkt_send()
+#for i in range(5):
+pkt_send()
 
 write_pcap_files()
 
