@@ -246,8 +246,8 @@ control MyIngress(inout headers hdr,
         hdr.srv6_sid1.setValid();
         hdr.srv6_sid1.segment_id = s1;
         hdr.srv6_sid2.setValid();
-        hdr.srv6_sid2.segment_id = s2;/*s2*/
-        hdr.ipv6_outer.dst_addr = s2;/*s2*/
+        hdr.srv6_sid2.segment_id = s2;
+        hdr.ipv6_outer.dst_addr = s2;
         build_srv6(2);
     }
 
@@ -278,8 +278,8 @@ control MyIngress(inout headers hdr,
     table teid_exact{
         key = {
             hdr.gtp.teid: ternary;
-            hdr.pdu_container.qosid: ternary;
-/*          hdr.ipv6_inner.dst_addr: ternary;
+/*          hdr.pdu_container.qosid: ternary;
+            hdr.ipv6_inner.dst_addr: ternary;
             hdr.ipv6_inner.src_addr: ternary;
             hdr.ipv6_inner.next_hdr: ternary;
             hdr.tcp_inner.dstPort: ternary;

@@ -103,19 +103,33 @@ def write_pcap_files():
 
 MAC1 = "08:11:11:11:11:08"
 MAC2 = "08:22:22:22:22:08"
+MAC3 = "08:33:33:33:33:08"
+MAC4 = "08:44:44:44:44:08"
 pktCnt = 0
 
 def pkt_send():
     global pktCnt
-    pkt = Ether(src=MAC2, dst=MAC2) / IPv6(src="fc00::1",dst="fc00::2") / UDP (sport=64515, dport=2152 ) / GTP_U_Header(TEID=32, Reserved=0, E=1) / dl_pdu_session(gtp_ext=133,QoSID=14) / IPv6(dst="fc00::2" , src="fc00::1") / UDP(dport=80,sport=35000)
+    ''' PKT ONE -> TEID = 1 -> REGRA TESTADA: IPV6_FORWARD'''
+    pkt = Ether(src=MAC1, dst=MAC2) / IPv6(src="fc00::1",dst="fc00::2") / UDP (sport=64515, dport=2152 ) / GTP_U_Header(TEID=1, Reserved=0, E=1) / dl_pdu_session(gtp_ext=133,QoSID=14) / IPv6(dst="fc00::2" , src="fc00::1") / UDP(dport=80,sport=35000)
     pkt.show2()
     pkt = pad_pkt(pkt, 64)
     applyPkt(pkt, 'nf0', pktCnt)
     pktCnt += 1
-    pkt = Ether(src=MAC2, dst=MAC2) / IPv6(src="fc00::1",dst="fc00::2") / UDP (sport=64515, dport=2152 ) / GTP_U_Header(TEID=32, Reserved=0, E=1) / dl_pdu_session(gtp_ext=133,QoSID=14) / IPv6(dst="fc00::2" , src="fc00::1") / UDP(dport=80,sport=35000)
+    pkt = Ether(src=MAC2, dst=MAC2) / IPv6(src="fc00::1",dst="fc00::2") / UDP (sport=64515, dport=2152 ) / GTP_U_Header(TEID=1, Reserved=0, E=1) / dl_pdu_session(gtp_ext=133,QoSID=14) / IPv6(dst="fc00::2" , src="fc00::1") / UDP(dport=80,sport=35000)
     pkt.show2()
     pkt = pad_pkt(pkt, 64)
     expPkt(pkt, 'nf1')
+
+    ''' PKT TWO -> TEID = 32 -> REGRA TESTADA: TEID_EXACT + IPV6_FORWARD'''
+    pkt1 = Ether(src=MAC1, dst=MAC2) / IPv6(src="fc00::1",dst="fc00::2") / UDP (sport=64515, dport=2152 ) / GTP_U_Header(TEID=32, Reserved=0, E=1) / dl_pdu_session(gtp_ext=133,QoSID=14) / IPv6(dst="fc00::2" , src="fc00::1") / UDP(dport=80,sport=35000)
+    pkt1.show2()
+    pkt1 = pad_pkt(pkt1, 64)
+    applyPkt(pkt1, 'nf0', pktCnt)
+    pktCnt += 1
+    pkt1 = Ether(src=MAC2, dst=MAC3) / IPv6(src="fc00::1",dst="fc00::3") / IPv6ExtHdrRouting(type=4,segleft=1,addresses=["fc00::4","fc00::3"]) / UDP (sport=64515, dport=2152 ) / GTP_U_Header(TEID=32, Reserved=0, E=1) / dl_pdu_session(gtp_ext=133,QoSID=14) / IPv6(dst="fc00::2" , src="fc00::1") / UDP(dport=80,sport=35000)
+    pkt1.show2()
+    pkt1 = pad_pkt(pkt1, 64)
+    expPkt(pkt1, 'nf2')
 
 for i in range(5):
     pkt_send()
