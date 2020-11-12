@@ -280,13 +280,13 @@ control MyIngress(inout headers hdr,
             hdr.gtp.teid: ternary;
             hdr.pdu_container.qosid: ternary;
             hdr.ipv6_inner.dst_addr: ternary;
-/*            hdr.ipv6_inner.src_addr: ternary;
+            hdr.ipv6_inner.src_addr: ternary;
             hdr.ipv6_inner.next_hdr: ternary;
             hdr.tcp_inner.dstPort: ternary;
             hdr.tcp_inner.srcPort: ternary;
             hdr.udp_inner.dport: ternary;
             hdr.udp_inner.sport: ternary;
-*/      }
+        }
         actions = {
             srv6_t_insert_2;
             /*srv6_t_insert_3;*/
