@@ -117,10 +117,10 @@ def pkt_send():
     pkt = pad_pkt(pkt, 64)
     applyPkt(pkt, 'nf0', pktCnt)
     pktCnt += 1
-    pkt = Ether(src=MAC2, dst=MAC2) / IPv6(src="fc00::1",dst="fc00::2") / UDP (sport=64515, dport=2152) / GTP_U_Header(TEID=1, Reserved=0, E=1) / dl_pdu_session(gtp_ext=133,QoSID=14) / IPv6(dst="fc00::2", src="fc00::1") / UDP(dport=80,sport=35000)
-    pkt.show2()
-    pkt = pad_pkt(pkt, 64)
-    expPkt(pkt, 'nf1')
+    pkt_0 = Ether(src=MAC2, dst=MAC2) / IPv6(src="fc00::1",dst="fc00::2") /  UDP (sport=64515, dport=2152) / GTP_U_Header(TEID=32, Reserved=0, E=1) / dl_pdu_session(gtp_ext=133,QoSID=14) / IPv6(dst="fc00::2", src="fc00::1") / UDP(dport=80,sport=35000)
+    pkt_0.show2()
+    pkt_0 = pad_pkt(pkt_0, 64)
+    expPkt(pkt_0, 'nf1')
 '''
     ################################################################################
     ######################### PKT FROM NF1 TO NF2###################################
