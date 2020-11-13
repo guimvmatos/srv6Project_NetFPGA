@@ -103,8 +103,8 @@ def write_pcap_files():
 
 MAC1 = "08:11:11:11:11:08"
 MAC2 = "08:22:22:22:22:08"
-MAC3 = "08:33:33:33:33:08"
-MAC4 = "08:44:44:44:44:08"
+#MAC3 = "08:33:33:33:33:08"
+#MAC4 = "08:44:44:44:44:08"
 pktCnt = 0
 
 def pkt_send():
@@ -152,8 +152,8 @@ def pkt_send():
     pkt2 = pad_pkt(pkt2, 64)
     expPkt(pkt2, 'nf2')
 '''
-#for i in range(5):
-pkt_send()
+for i in range(5):
+    pkt_send()
 
 write_pcap_files()
 
