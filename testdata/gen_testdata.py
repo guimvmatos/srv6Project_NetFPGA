@@ -109,7 +109,7 @@ pktCnt = 0
 
 def pkt_send():
     global pktCnt
-    ################################################################################
+'''    ################################################################################
     ######################### P K T NF0 TO NF1######################################
     ################################################################################
     pkt = Ether(src=MAC1, dst=MAC2) / IPv6(src="fc00::1",dst="fc00::2") / UDP (sport=64515, dport=2152) / GTP_U_Header(TEID=32, Reserved=0, E=1) / dl_pdu_session(gtp_ext=133,QoSID=14) / IPv6(dst="fc00::2", src="fc00::1") / UDP(dport=80,sport=35000)
@@ -121,7 +121,7 @@ def pkt_send():
     pkt_0.show2()
     pkt_0 = pad_pkt(pkt_0, 64)
     expPkt(pkt_0, 'nf1')
-'''
+
     ################################################################################
     ######################### PKT FROM NF1 TO NF2###################################
     ################################################################################
@@ -134,22 +134,21 @@ def pkt_send():
     pkt1.show2()
     pkt1 = pad_pkt(pkt1, 64)
     expPkt(pkt, 'nf2')
-
+'''
     ################################################################################
     ######################### PKT (srv6) FROM NF0 TO NF2############################
     ################################################################################
-    pkt2 = Ether(src=MAC1, dst=MAC2) / IPv6(src="fc00::1",dst="fc00::2") / UDP (sport=64515, dport=2152 ) / GTP_U_Header(TEID=32, Reserved=0, E=1) / dl_pdu_session(gtp_ext=133,QoSID=14) / IPv6(dst="fc00::2" , src="fc00::1") / TCP(dport=80,sport=35000) / "teste"
+    pkt2 = Ether(src=MAC1, dst=MAC2) / IPv6(src="fc00::1",dst="fc00::2") / UDP (sport=64515, dport=2152 ) / GTP_U_Header(TEID=32, Reserved=0, E=1) / dl_pdu_session(gtp_ext=133,QoSID=14) / IPv6(dst="fc00::2" , src="fc00::1") / TCP(dport=80,sport=35000)
     pkt2.show2()
     pkt2 = pad_pkt(pkt2, 64)
     applyPkt(pkt2, 'nf0', pktCnt)
     pktCnt += 1
-    #pkt2 = Ether(src=MAC2, dst=MAC3) / IPv6(src="fc00::1",dst="fc00::3") / IPv6ExtHdrRouting(type=4,segleft=1,addresses=["fc00::4","fc00::3"], reserved=16777216) / UDP (sport=64515, dport=2152 ) / GTP_U_Header(TEID=32, Reserved=0, E=1) / dl_pdu_session(gtp_ext=133,QoSID=14) / IPv6(dst="fc00::2" , src="fc00::1") / TCP(dport=80,sport=35000) / "teste"
+    pkt2_0 = Ether(src=MAC2, dst=MAC3) / IPv6(src="fc00::1",dst="fc00::3") / IPv6ExtHdrRouting(type=4,segleft=1,addresses=["fc00::4","fc00::3"], reserved=16777216) / UDP (sport=64515, dport=2152 ) / GTP_U_Header(TEID=32, Reserved=0, E=1) / dl_pdu_session(gtp_ext=133,QoSID=14) / IPv6(dst="fc00::2" , src="fc00::1") / TCP(dport=80,sport=35000) / "teste"
 
-    pkt2 = Ether(src=MAC2, dst=MAC3) / IPv6(src="fc00::1",dst="fc00::3") / UDP (sport=64515, dport=2152 ) / GTP_U_Header(TEID=32, Reserved=0, E=1) / dl_pdu_session(gtp_ext=133,QoSID=14) / IPv6(dst="fc00::2" , src="fc00::1") / TCP(dport=80,sport=35000) / "teste"
-    pkt2.show2()
-    pkt2 = pad_pkt(pkt2, 64)
-    expPkt(pkt2, 'nf2')
-'''
+    pkt2_0.show2()
+    pkt2_0 = pad_pkt(pkt2_0, 64)
+    expPkt(pkt2_0, 'nf2')
+
 for i in range(5):
     pkt_send()
 
