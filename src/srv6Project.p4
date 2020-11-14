@@ -158,7 +158,7 @@ parser MyParser(packet_in packet,
         transition select (hdr.ipv6_outer.next_hdr) {
             TYPE_SRV6: parse_srv6;
             TYPE_UDP: parse_udp;
-            /*default: accept; LIBERAR DEPOIS DE CONFIRMAR PARSER ATÉ O FIM */
+            default: accept;
        }
     }
 
@@ -177,8 +177,9 @@ parser MyParser(packet_in packet,
     state parse_gtp{
         packet.extract(hdr.gtp);
         transition select(hdr.gtp.extension_header_flag_id){
-            /*0 : parse_ipv6_inner;LIBERAR DEPOIS DE CONFIRMAR PARSER ATÉ O FIM */
+            0 : parse_ipv6_inner;
             1 : parse_gtp_ext;
+            default: accept;
         }
     }
 
@@ -199,7 +200,7 @@ parser MyParser(packet_in packet,
     	transition select(hdr.ipv6_inner.next_hdr){
     		TYPE_UDP: parse_udp_inner;
     		TYPE_TCP: parse_tcp_inner;
-    		/*default: accept; LIBERAR DEPOIS DE CONFIRMAR PARSER ATÉ O FIM */
+    		default: accept;
     	}
     }
 
